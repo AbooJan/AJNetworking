@@ -5,7 +5,8 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
 
 ### 使用方法
 
-一、 全局网络配置，使用类 `AJNetworkConfig`  在  `AppDelegate` 中配置.
+#### 一、 网络配置
+1. 全局网络配置，需要使用类 `AJNetworkConfig`  在  `AppDelegate` 中配置.
 	
 	```
 	/// 服务器域名
@@ -16,8 +17,9 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
 	@property (nonatomic, copy) NSString *httpsCertificatePath;
 	```
  
+ ---
  
- 二、 发起请求
+#### 二、 发起请求
 
 1. 新建一个请求类继承自 `RequestBeanBase` , 一个响应类继承自 `ResponseBeanBase` 。 
 
@@ -58,8 +60,9 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
     }];
  	```
  	
+ ---
  	
-三、 文件上传
+#### 三、 文件上传
 
 1. 请求类需要实现协议 `RequestBeanProtocol` 中的方法, 这个参考了 `YTKNetwork` 框架:
 
@@ -104,8 +107,9 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
     }];
  	```
  	
+ ---
  	
-四、文件下载
+#### 四、文件下载
 
 1. 文件下载跟普通请求不同，需要使用类 `AJNetworkManager` 中的以下方法：
 
