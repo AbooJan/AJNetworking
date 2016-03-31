@@ -32,13 +32,14 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
 	> 4. 例如一个登录请求，请求类为：`RequestBeanLogin` , 响应类为：`ResponseBeanLogin`
 	
 	
- 2. 请求类里面的成员变量即为发起请求的入参，响应类里面的成员变量即为返回参数。
+	
+2. 请求类里面的成员变量即为发起请求的入参，响应类里面的成员变量即为返回参数。
  
- 3. 请求类需要遵循协议：`RequestBeanProtocol` . 响应类需要遵循协议：`ResponseBeanProtocol` 
+3. 请求类需要遵循协议：`RequestBeanProtocol` . 响应类需要遵循协议：`ResponseBeanProtocol` 
  
- 4. 网络请求的相关配置通过实现协议 `RequestBeanProtocol` 的方法。
+4. 网络请求的相关配置通过实现协议 `RequestBeanProtocol` 的方法。
  
- 5. 发起请求有类 `AJNetworkManager` 管理，里面负责网络的请求和返回数据的处理，示例：
+5. 发起请求有类 `AJNetworkManager` 管理，里面负责网络的请求和返回数据的处理，示例：
  
  	```
  	// 手机号码归属地查询
