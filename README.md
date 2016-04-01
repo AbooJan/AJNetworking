@@ -156,6 +156,13 @@ pod 'AJNetworking'
     }];
 	```
  
+ 
+ ## 感谢
+ 
+   依赖框架   | 
+ ------------ |
+ [AFNetwoking](https://github.com/AFNetworking/AFNetworking) |
+ [MJExtension](https://github.com/CoderMJLee/MJExtension)    |
 	
  	
  	
