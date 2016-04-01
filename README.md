@@ -24,7 +24,7 @@ pod 'AJNetworking'
 	@property (nonatomic, copy) NSString *httpsCertificatePath;
 	```
  
- ---
+ --
  
 #### 二、 发起请求
 
@@ -67,7 +67,7 @@ pod 'AJNetworking'
     }];
  	```
  	
- ---
+ --
  	
 #### 三、 文件上传
 
@@ -114,7 +114,7 @@ pod 'AJNetworking'
     }];
  	```
  	
- ---
+ --
  	
 #### 四、文件下载
 
