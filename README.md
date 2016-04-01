@@ -3,6 +3,13 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
 
 
 
+## 安装
+
+```
+pod 'AJNetworking'
+```
+
+
 ## 使用方法
 
 #### 一、 网络配置
