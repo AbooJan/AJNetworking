@@ -3,6 +3,13 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
 
 
 
+## 安装
+
+```
+pod 'AJNetworking'
+```
+
+
 ## 使用方法
 
 #### 一、 网络配置
@@ -17,7 +24,7 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
 	@property (nonatomic, copy) NSString *httpsCertificatePath;
 	```
  
- ---
+ --
  
 #### 二、 发起请求
 
@@ -60,7 +67,7 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
     }];
  	```
  	
- ---
+ --
  	
 #### 三、 文件上传
 
@@ -107,7 +114,7 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
     }];
  	```
  	
- ---
+ --
  	
 #### 四、文件下载
 
@@ -149,6 +156,13 @@ AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问
     }];
 	```
  
+ 
+ ## 感谢
+ 
+   依赖框架   | 
+ ------------ |
+ [AFNetwoking](https://github.com/AFNetworking/AFNetworking) |
+ [MJExtension](https://github.com/CoderMJLee/MJExtension)    |
 	
  	
  	
