@@ -161,7 +161,8 @@ pod 'AJNetworking'
     }];
 	```
  
- 3. 下载任务控制, 通过下载请求返回的 `NSURLSessionDownloadTask` 实例来处理。
+ 
+3. 下载任务控制, 通过下载请求返回的 `NSURLSessionDownloadTask` 实例来处理。
  
  	```
  	// 暂停任务 
@@ -173,7 +174,6 @@ pod 'AJNetworking'
  	// 取消下载
  	[self.downloadTask cancel];
  	```
- 
  
  
  
