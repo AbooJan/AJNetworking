@@ -132,8 +132,10 @@ pod 'AJNetworking'
  	 *  @param requestBean        文件下载请求Bean
  	 *  @param progressCallBack   下载进度回调
  	 *  @param completionCallBack 完成回调
-  	 */
-	+ (void)downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack;
+ 	 *
+ 	 *  @return 当前下载任务线程
+ 	 */
+	+ ( NSURLSessionDownloadTask * _Nullable )downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase * _Nonnull)requestBean progress:(AJDownloadProgressCallBack _Nullable )progressCallBack completion:(AJDownloadCompletionCallBack _Nullable)completionCallBack;;
 	``` 
 
 2. 文件下载请求类使用 `RequestBeanDownloadTaskBase`，使用示例：
@@ -159,8 +161,23 @@ pod 'AJNetworking'
     }];
 	```
  
+ 3. 下载任务控制, 通过下载请求返回的 `NSURLSessionDownloadTask` 实例来处理。
  
- ## 感谢
+ 	```
+ 	// 暂停任务 
+ 	[self.downloadTask suspend];
+ 
+ 	// 继续下载
+ 	[self.downloadTask resume];
+ 
+ 	// 取消下载
+ 	[self.downloadTask cancel];
+ 	```
+ 
+ 
+ 
+ 
+## 感谢
  
    依赖框架   | 
  ------------ |

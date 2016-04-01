@@ -136,18 +136,46 @@
                                     <action selector="downloadBtnClick:" destination="WYc-JM-WG3" eventType="touchUpInside" id="ED4-1A-7Ad"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vzp-Tw-OYL">
+                                <rect key="frame" x="216" y="278" width="80" height="40"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1a1-uV-aje"/>
+                                    <constraint firstAttribute="width" constant="80" id="qhb-co-9L7"/>
+                                </constraints>
+                                <state key="normal" title="取消下载"/>
+                                <connections>
+                                    <action selector="cancelDownloadBtnClick:" destination="WYc-JM-WG3" eventType="touchUpInside" id="asU-Xw-vEP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfd-PB-hvT">
+                                <rect key="frame" x="126" y="278" width="80" height="40"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="TbA-u0-TGQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="asv-A4-Se1"/>
+                                </constraints>
+                                <state key="normal" title="暂停下载"/>
+                                <connections>
+                                    <action selector="suspendDownloadBtnClick:" destination="WYc-JM-WG3" eventType="touchUpInside" id="p4I-td-M0n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DoW-BL-x3d" firstAttribute="leading" secondItem="O35-f9-AsA" secondAttribute="leading" constant="16" id="2ZP-gz-Xes"/>
+                            <constraint firstItem="vzp-Tw-OYL" firstAttribute="leading" secondItem="kfd-PB-hvT" secondAttribute="trailing" constant="10" id="4e4-Ox-IqJ"/>
                             <constraint firstItem="omL-Za-B2C" firstAttribute="leading" secondItem="O35-f9-AsA" secondAttribute="leading" constant="16" id="59Y-bZ-VGL"/>
                             <constraint firstItem="3RV-no-tKH" firstAttribute="top" secondItem="IUQ-5g-J2W" secondAttribute="bottom" constant="10" id="6B8-BI-Y2d"/>
                             <constraint firstAttribute="trailing" secondItem="DoW-BL-x3d" secondAttribute="trailing" constant="16" id="7JI-RG-p66"/>
                             <constraint firstItem="HIz-us-eSe" firstAttribute="leading" secondItem="O35-f9-AsA" secondAttribute="leading" constant="16" id="9PW-7Y-q81"/>
                             <constraint firstItem="DoW-BL-x3d" firstAttribute="top" secondItem="ABT-0s-3Zt" secondAttribute="bottom" constant="16" id="C0C-0Y-DHi"/>
                             <constraint firstItem="IUQ-5g-J2W" firstAttribute="top" secondItem="HIz-us-eSe" secondAttribute="bottom" constant="10" id="D55-l1-qKW"/>
+                            <constraint firstItem="vzp-Tw-OYL" firstAttribute="centerY" secondItem="kfd-PB-hvT" secondAttribute="centerY" id="H0j-7N-1xY"/>
+                            <constraint firstItem="kfd-PB-hvT" firstAttribute="centerY" secondItem="3RV-no-tKH" secondAttribute="centerY" id="LXW-QE-UJ8"/>
                             <constraint firstItem="3RV-no-tKH" firstAttribute="leading" secondItem="O35-f9-AsA" secondAttribute="leading" constant="16" id="Li7-De-hgg"/>
                             <constraint firstAttribute="trailing" secondItem="ABT-0s-3Zt" secondAttribute="trailing" constant="16" id="R7J-os-Ezb"/>
+                            <constraint firstItem="kfd-PB-hvT" firstAttribute="leading" secondItem="3RV-no-tKH" secondAttribute="trailing" constant="10" id="SVA-Mq-dns"/>
                             <constraint firstItem="ABT-0s-3Zt" firstAttribute="leading" secondItem="O35-f9-AsA" secondAttribute="leading" constant="16" id="TYH-wL-iAb"/>
                             <constraint firstItem="omL-Za-B2C" firstAttribute="top" secondItem="DoW-BL-x3d" secondAttribute="bottom" constant="16" id="leo-nH-9ki"/>
                             <constraint firstItem="HIz-us-eSe" firstAttribute="top" secondItem="omL-Za-B2C" secondAttribute="bottom" constant="10" id="mb1-zq-0kO"/>

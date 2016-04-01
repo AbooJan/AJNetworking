@@ -13,9 +13,9 @@
 #import "RequestBeanDownloadTaskBase.h"
 
 
-typedef void(^AJRequestCallBack)(__kindof ResponseBeanBase *responseBean, BOOL success);
+typedef void(^AJRequestCallBack)(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success);
 typedef void(^AJDownloadProgressCallBack)(int64_t totalUnitCount, int64_t completedUnitCount, double progressRate);
-typedef void(^AJDownloadCompletionCallBack)(NSURL *filePath, NSError *error);
+typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError * _Nullable error);
 
 
 @interface AJNetworkManager : NSObject
@@ -28,7 +28,8 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL *filePath, NSError *error);
  *  @param requestBean 请求参数模型Bean
  *  @param callBack    请求结果回调
  */
-+ (void)requestWithBean:(__kindof RequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack;
++ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack;
+
 
 /**
  *  @author aboojan
@@ -38,7 +39,9 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL *filePath, NSError *error);
  *  @param requestBean        文件下载请求Bean
  *  @param progressCallBack   下载进度回调
  *  @param completionCallBack 完成回调
+ *
+ *  @return 当前下载任务线程
  */
-+ (void)downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack;
++ ( NSURLSessionDownloadTask * _Nullable )downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase * _Nonnull)requestBean progress:(AJDownloadProgressCallBack _Nullable )progressCallBack completion:(AJDownloadCompletionCallBack _Nullable)completionCallBack;
 
 @end

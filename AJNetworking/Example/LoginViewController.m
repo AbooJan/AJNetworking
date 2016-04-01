@@ -28,7 +28,13 @@
 - (IBAction)loginBtnClick:(id)sender;
 - (IBAction)httpsTestBtnClick:(id)sender;
 - (IBAction)uploadBtnClick:(id)sender;
+
 - (IBAction)downloadBtnClick:(id)sender;
+- (IBAction)suspendDownloadBtnClick:(id)sender;
+- (IBAction)cancelDownloadBtnClick:(id)sender;
+
+@property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
+@property (nonatomic, assign) BOOL isDownloading;
 
 @end
 
@@ -93,20 +99,20 @@
 
 - (IBAction)downloadBtnClick:(id)sender
 {
-    NSString *fileUrl = @"http://temp.26923.com/2016/pic/000/378/032ad9af805a8e83d8323f515d1d6645.jpg";
+//    NSString *fileUrl = @"http://temp.26923.com/2016/pic/000/378/032ad9af805a8e83d8323f515d1d6645.jpg";
+    NSString *fileUrl = @"http://125.89.74.165/10/m/m/j/a/mmjazvfnzomddhahggpebnswqfeutw/hc.yinyuetai.com/026601346FEFC3079F2136B68B0ECFD7.flv?sc=5927e705d66bde7b&br=717";
     NSString *fileMD5 = [MD5Util md5ExamNum:fileUrl];
     
     RequestBeanDownloadTaskBase *downloadRequest = [[RequestBeanDownloadTaskBase alloc] init];
     
     downloadRequest.fileUrl = fileUrl;
-    downloadRequest.saveFileName = [NSString stringWithFormat:@"%@.jpg", fileMD5];
+//    downloadRequest.saveFileName = [NSString stringWithFormat:@"%@.jpg", fileMD5];
     
-//    downloadRequest.fileUrl = @"http://118.212.145.146/music.qqvideo.tc.qq.com/l0015sn8rg9.mp4?type=mp4&fmt=mp4&vkey=B299F833D4EC200ABCFB722C3031DAA4EBCEAB0C380ABD42F6C78B2563F105BDD10A75773C9DD4577427018E8A424E43E0CE1D8788B6ED7503EC2C6E02A316C19A88665BEE7BD3F743325A10C2E3B76C190B7CE75B2F4786&locid=8fbc5585-bde6-4332-96d4-61aae48e57a4&size=18968956&ocid=2418480556";
-//    downloadRequest.saveFileName = @"可以了.mp4";
+    downloadRequest.saveFileName = [NSString stringWithFormat:@"%@.mp4", fileMD5];
     
     downloadRequest.saveFilePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
-    [AJNetworkManager downloadTaskWithBean:downloadRequest progress:^(int64_t totalUnitCount, int64_t completedUnitCount, double progressRate) {
+    self.downloadTask = [AJNetworkManager downloadTaskWithBean:downloadRequest progress:^(int64_t totalUnitCount, int64_t completedUnitCount, double progressRate) {
         
         AJLog(@"下载进度：%lf", progressRate);
         
@@ -120,5 +126,36 @@
         
     }];
 
+    self.isDownloading = YES;
+}
+
+- (IBAction)suspendDownloadBtnClick:(UIButton *)sender
+{
+    // 暂停下载
+    if (self.downloadTask) {
+        
+        if (self.isDownloading) {
+            
+            [self.downloadTask suspend];
+            [sender setTitle:@"继续下载" forState:UIControlStateNormal];
+            
+            self.isDownloading = NO;
+            
+        }else{
+            
+            [self.downloadTask resume];
+            [sender setTitle:@"暂停下载" forState:UIControlStateNormal];
+            
+            self.isDownloading = YES;
+        }
+    }
+}
+
+- (IBAction)cancelDownloadBtnClick:(id)sender
+{
+    // 取消下载
+    if (self.downloadTask) {
+        [self.downloadTask cancel];
+    }
 }
 @end

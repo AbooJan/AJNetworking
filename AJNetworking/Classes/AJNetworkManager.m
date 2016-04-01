@@ -234,7 +234,7 @@
     }
 }
 
-+ (void)downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack;
++ (NSURLSessionDownloadTask *)downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack
 {
     // 如果已存在，则不下载
     NSString *saveFilePath = [requestBean.saveFilePath stringByAppendingPathComponent:requestBean.saveFileName];
@@ -242,7 +242,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:saveFilePath]) {
         completionCallBack(saveFileUrl, nil);
-        return;
+        return nil;
     }
     
     
@@ -272,9 +272,7 @@
     
     [downloadTask resume];
     
-    
-    //TODO: 暂停下载功能
-    //TODO: 取消下载功能
+    return downloadTask;
 }
 
 #pragma mark - <结果处理>
