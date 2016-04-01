@@ -15,13 +15,16 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - MJExtension (3.0.10)
+  - SPTPersistentCache (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - MJExtension
+  - SPTPersistentCache
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
+  SPTPersistentCache: c2ab4542796647387441169e352ba5f812128153
 
 COCOAPODS: 0.39.0

@@ -236,6 +236,16 @@
 
 + (void)downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack;
 {
+    // 如果已存在，则不下载
+    NSString *saveFilePath = [requestBean.saveFilePath stringByAppendingPathComponent:requestBean.saveFileName];
+    NSURL *saveFileUrl = [NSURL fileURLWithPath:saveFilePath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:saveFilePath]) {
+        completionCallBack(saveFileUrl, nil);
+        return;
+    }
+    
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
@@ -250,7 +260,6 @@
         
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         
-        NSURL *saveFileUrl = [NSURL fileURLWithPath:[requestBean.saveFilePath stringByAppendingPathComponent:requestBean.saveFileName]];
         return saveFileUrl;
         
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {

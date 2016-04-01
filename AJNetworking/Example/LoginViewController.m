@@ -18,6 +18,7 @@
 #import "ResponseBeanDownloadFile.h"
 #import "RequestBeanDownloadFile.h"
 #import "RequestBeanDownloadTaskBase.h"
+#import "MD5Util.h"
 
 
 @interface LoginViewController ()
@@ -92,14 +93,16 @@
 
 - (IBAction)downloadBtnClick:(id)sender
 {
+    NSString *fileUrl = @"http://temp.26923.com/2016/pic/000/378/032ad9af805a8e83d8323f515d1d6645.jpg";
+    NSString *fileMD5 = [MD5Util md5ExamNum:fileUrl];
     
     RequestBeanDownloadTaskBase *downloadRequest = [[RequestBeanDownloadTaskBase alloc] init];
     
-//    downloadRequest.fileUrl = @"http://temp.26923.com/2016/pic/000/378/032ad9af805a8e83d8323f515d1d6645.jpg";
-//    downloadRequest.saveFileName = @"desktop.jpg";
+    downloadRequest.fileUrl = fileUrl;
+    downloadRequest.saveFileName = [NSString stringWithFormat:@"%@.jpg", fileMD5];
     
-    downloadRequest.fileUrl = @"http://118.212.145.146/music.qqvideo.tc.qq.com/l0015sn8rg9.mp4?type=mp4&fmt=mp4&vkey=B299F833D4EC200ABCFB722C3031DAA4EBCEAB0C380ABD42F6C78B2563F105BDD10A75773C9DD4577427018E8A424E43E0CE1D8788B6ED7503EC2C6E02A316C19A88665BEE7BD3F743325A10C2E3B76C190B7CE75B2F4786&locid=8fbc5585-bde6-4332-96d4-61aae48e57a4&size=18968956&ocid=2418480556";
-    downloadRequest.saveFileName = @"可以了.mp4";
+//    downloadRequest.fileUrl = @"http://118.212.145.146/music.qqvideo.tc.qq.com/l0015sn8rg9.mp4?type=mp4&fmt=mp4&vkey=B299F833D4EC200ABCFB722C3031DAA4EBCEAB0C380ABD42F6C78B2563F105BDD10A75773C9DD4577427018E8A424E43E0CE1D8788B6ED7503EC2C6E02A316C19A88665BEE7BD3F743325A10C2E3B76C190B7CE75B2F4786&locid=8fbc5585-bde6-4332-96d4-61aae48e57a4&size=18968956&ocid=2418480556";
+//    downloadRequest.saveFileName = @"可以了.mp4";
     
     downloadRequest.saveFilePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
