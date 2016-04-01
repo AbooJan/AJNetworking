@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "AJNetworking"
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.summary      = "对AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问题"
 
   s.description  = <<-DESC
