@@ -1,9 +1,9 @@
 //
 //  MD5Util.m
-//  jianzhimao
+//  AJNetworking
 //
-//  Created by 刘骞 on 3/26/14.
-//  Copyright (c) 2014 Guangzhou jiuwei technology company. All rights reserved.
+//  Created by 钟宝健 on 16/3/28.
+//  Copyright © 2016年 aboojan. All rights reserved.
 //
 
 #import "MD5Util.h"
@@ -12,35 +12,34 @@
 #import "RegexKitLite.h"
 
 // MD5加密因子
-#define MD5_ACCESSORY_STR @"123456789"
+#define MD5_DEFAULT_ENCRYPTION_FACTOR @"123456789"
 ///字母+数字
 #define REGXEX_LETTER_AND_NUM           @"[a-zA-Z\\d]"
 
 @implementation MD5Util
 
-+(NSString *)md5ExamNum:(NSString *)examNum{
-    
-    NSString *s1 = [self calc:[examNum stringByAppendingString:MD5_ACCESSORY_STR]];
-    NSString *s2 = [self calc:s1];
-    return s2;
-}
-
-+ (NSString *)companyMd5ExamNum:(NSString *)examNum md5Key:(NSString *)md5Key
++ (NSString *)md5WithDefaultEncryptionFactor:(NSString *) targetContent
 {
-    NSString *key = md5Key;
     
-    if (!key) {
-        
-        key = MD5_ACCESSORY_STR;
-        
-    }
-    NSString *s  = [self cleanSpecialCharForMD5:examNum];
-    NSString *s1 = [self calc:[s stringByAppendingString:key]];//密码因子，增加破解难度
-    NSString *s2 = [self calc:s1];
+    NSString *s1 = [self md5WithoutEncryptionFactor:[targetContent stringByAppendingString:MD5_DEFAULT_ENCRYPTION_FACTOR]];
+    NSString *s2 = [self md5WithoutEncryptionFactor:s1];
     return s2;
 }
 
-+ (NSString *)cleanSpecialCharForMD5:(NSString *)aString{
++ (NSString *)md5WithContent:(NSString *) targetContent encryptionFactor:(NSString *) factor
+{
+
+    if (factor == nil || [factor isEqualToString:@""]) {
+        factor = MD5_DEFAULT_ENCRYPTION_FACTOR;
+    }
+    
+    NSString *s  = [self cleanSpecialCharForMD5:targetContent];
+    NSString *s1 = [self md5WithoutEncryptionFactor:[s stringByAppendingString:factor]];
+    NSString *s2 = [self md5WithoutEncryptionFactor:s1];
+    return s2;
+}
+
++ (NSString *)cleanSpecialCharForMD5:(NSString *) aString{
     
     NSArray *letterAndNums = [aString arrayOfCaptureComponentsMatchedByRegex:REGXEX_LETTER_AND_NUM];
     if (letterAndNums != nil && letterAndNums.count>0) {
@@ -56,10 +55,11 @@
 }
 
 
-+ (NSString *)calc:(NSString *)str{
-    const char *cStr = [str UTF8String];
++ (NSString *)md5WithoutEncryptionFactor:(NSString *) targetContent
+{
+    const char *cStr = [targetContent UTF8String];
     unsigned char result[16];
-    CC_MD5(cStr, (CC_LONG)strlen(cStr), result); // This is the md5 call
+    CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
     NSString *md5Str = [NSString stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
             result[0], result[1], result[2], result[3],
@@ -69,8 +69,8 @@
             ];
     
     return md5Str;
-    
 }
+
 NSInteger letterSorted(id string1,id string2, void *context){
     if (string1&&string2) {
         return [string1 compare:string2];
@@ -80,16 +80,17 @@ NSInteger letterSorted(id string1,id string2, void *context){
     
 }
 
-+ (NSString *)md5MakeByDic:(NSDictionary *)params md5key:(NSString *)key
++ (NSString *)md5WithDictionary:(NSDictionary *) targetDictionary encryptionFactor:(NSString *) factor
 {
-    if (params&&params.count>0) {
-        NSArray *keys = params.allKeys;
+    if ( (targetDictionary != nil) && (targetDictionary.allKeys.count > 0) ) {
+        
+        NSArray *keys = targetDictionary.allKeys;
         NSArray *sortedKeys = [keys sortedArrayUsingFunction:letterSorted context:NULL];
         NSMutableString *sortedValueString = [[NSMutableString alloc] init];
         
         for (NSString *key in sortedKeys) {
             
-            id value = [params objectForKey:key];
+            id value = [targetDictionary objectForKey:key];
             
             if (value && ![value isEqual:[NSNull null]]) {
                 
@@ -104,9 +105,7 @@ NSInteger letterSorted(id string1,id string2, void *context){
                     
                 }else{
                     
-                    
                     valueString = value;
-                    
                 }
                 
                 [sortedValueString appendString:valueString];
@@ -114,11 +113,10 @@ NSInteger letterSorted(id string1,id string2, void *context){
             
         }
         
-        return [self companyMd5ExamNum:sortedValueString md5Key:key];
-        
+        return [self md5WithContent:sortedValueString encryptionFactor:factor];
     }
-    return @"";
     
+    return @"";
 }
 
 @end

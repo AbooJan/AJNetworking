@@ -101,7 +101,7 @@
 {
 //    NSString *fileUrl = @"http://temp.26923.com/2016/pic/000/378/032ad9af805a8e83d8323f515d1d6645.jpg";
     NSString *fileUrl = @"http://125.89.74.165/10/m/m/j/a/mmjazvfnzomddhahggpebnswqfeutw/hc.yinyuetai.com/026601346FEFC3079F2136B68B0ECFD7.flv?sc=5927e705d66bde7b&br=717";
-    NSString *fileMD5 = [MD5Util md5ExamNum:fileUrl];
+    NSString *fileMD5 = [MD5Util md5WithoutEncryptionFactor:fileUrl];
     
     RequestBeanDownloadTaskBase *downloadRequest = [[RequestBeanDownloadTaskBase alloc] init];
     
