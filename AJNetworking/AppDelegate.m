@@ -18,10 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    AJLog(@"%@", documentsPath);
+    
     // 网络配置
     AJNetworkConfig *networkConfig = [AJNetworkConfig shareInstance];
-//    networkConfig.hostUrl = @"apis.baidu.com";
-    networkConfig.hostUrl = @"192.168.1.10:80";
+    networkConfig.hostUrl = @"apis.baidu.com";
+//    networkConfig.hostUrl = @"192.168.1.10:80";
     networkConfig.httpsCertificatePassword = CFSTR("123456789");
     networkConfig.httpsCertificatePath = [[NSBundle mainBundle] pathForResource:@"client_test_local" ofType:@"p12"];
     

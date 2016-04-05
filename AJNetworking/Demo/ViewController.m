@@ -34,15 +34,43 @@
     RequestBeanPhoneNum *requestBean = [[RequestBeanPhoneNum alloc] init];
     requestBean.phone = phoneStr;
     
+    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+        
+        if (success) {
+            
+            AJLog(@"==============读取缓存=============");
+            
+            ResponseBeanPhoneNum *response = responseBean;
+            
+            [self handleReponse:response];
+        }
+    }];
+    
+    [self performSelector:@selector(readFromNetwork) withObject:nil afterDelay:3.0];
+}
+
+- (void)readFromNetwork
+{
+    NSString *phoneStr = self.phoneTF.text;
+    
+    RequestBeanPhoneNum *requestBean = [[RequestBeanPhoneNum alloc] init];
+    requestBean.phone = phoneStr;
+    
     [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
         
         if (success) {
             ResponseBeanPhoneNum *response = responseBean;
             
-            NSString *resultStr = [NSString stringWithFormat:@"%@ \n%@ \n%@ \n%@ \n%@ \n%@", response.retData.phone, response.retData.prefix, response.retData.supplier, response.retData.province, response.retData.city, response.retData.suit];
-
-            self.resultTV.text = [NSString stringWithFormat:@"%@", resultStr];
+            [self handleReponse:response];
         }
     }];
 }
+
+- (void)handleReponse:(ResponseBeanPhoneNum *)response
+{
+    NSString *resultStr = [NSString stringWithFormat:@"%@ \n%@ \n%@ \n%@ \n%@ \n%@", response.retData.phone, response.retData.prefix, response.retData.supplier, response.retData.province, response.retData.city, response.retData.suit];
+    
+    self.resultTV.text = [NSString stringWithFormat:@"%@", resultStr];
+}
+
 @end

@@ -9,6 +9,8 @@
 #import "AJNetworkManager.h"
 #import "MJExtension.h"
 #import "AJNetworkLog.h"
+#import <SPTPersistentCache/SPTPersistentCache.h>
+#import "MD5Util.h"
 
 
 @implementation AJNetworkManager
@@ -81,6 +83,26 @@
     
     return securityError;
 }
+
+#pragma mark 缓存Key
++ (NSString *)cacheKeyWithRequestBean:(__kindof RequestBeanBase *) requestBean
+{
+    NSString *cacheInfoStr = [NSString stringWithFormat:@"URL:%@ PARAMS:%@", [requestBean requestUrl], [requestBean mj_keyValues]];
+    NSString *cacheKey = [MD5Util md5WithoutEncryptionFactor:cacheInfoStr];
+    
+    return cacheKey;
+}
+
+
++ (Class)responseClassWithRequestBean:(__kindof RequestBeanBase *) requestBean
+{
+    const char *requestClassName = class_getName([requestBean class]);
+    NSString *responseBeanNameStr = [[NSString stringWithUTF8String:requestClassName] stringByReplacingOccurrencesOfString:@"Request" withString:@"Response"];
+    const char *responseBeanName = [responseBeanNameStr UTF8String];
+    
+    return objc_getClass(responseBeanName);
+}
+
 
 #pragma mark - <请求处理>
 
@@ -275,6 +297,36 @@
     return downloadTask;
 }
 
++ (void)cacheWithRequestWithBean:(__kindof RequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack
+{
+    if ([requestBean cacheResponse]) {
+        
+        SPTPersistentCache *httpCache = [[AJNetworkConfig shareInstance] globalHttpCache];
+        NSString *cacheKey = [self cacheKeyWithRequestBean:requestBean];
+        
+        __weak __typeof(&*self) weakSelf = self;
+        [httpCache loadDataForKey:cacheKey withCallback:^(SPTPersistentCacheResponse * _Nonnull response) {
+            
+            __strong __typeof__(weakSelf) strongSelf = weakSelf;
+            
+            if (response.result == SPTPersistentCacheResponseCodeOperationSucceeded) {
+                NSData *cacheData = response.record.data;
+                NSDictionary *jsonDic = [cacheData mj_keyValues];
+                
+                Class responseClass = [strongSelf responseClassWithRequestBean:requestBean];
+                ResponseBeanBase *responseBean = [responseClass mj_objectWithKeyValues:jsonDic];
+                responseBean.rawData = jsonDic;
+                
+                callBack(responseBean, YES);
+            }
+            
+        } onQueue:dispatch_get_main_queue()];
+        
+    }else{
+        callBack(nil, NO);
+    }
+}
+
 #pragma mark - <结果处理>
 
 + (void)handleSuccessWithRequestBean:(__kindof RequestBeanBase *)requestBean response:(id  _Nullable) responseObject callBack:(AJRequestCallBack)callBack
@@ -294,14 +346,17 @@
         return;
     }
     
-    const char *requestClassName = class_getName([requestBean class]);
-    NSString *responseBeanNameStr = [[NSString stringWithUTF8String:requestClassName] stringByReplacingOccurrencesOfString:@"Request" withString:@"Response"];
-    const char *responseBeanName = [responseBeanNameStr UTF8String];
-    
-    ResponseBeanBase *responseBean = [objc_getClass(responseBeanName) mj_objectWithKeyValues:responseObject];
+    Class responseClass = [self responseClassWithRequestBean:requestBean];
+    ResponseBeanBase *responseBean = [responseClass mj_objectWithKeyValues:responseObject];
     responseBean.rawData = responseObject;
     
     if ([responseBean checkSuccess]) {
+        
+        // 缓存
+        if ([requestBean cacheResponse]) {
+            [self saveCacheWithRequestBean:requestBean responseObj:responseObject];
+        }
+        
         // 成功
         callBack(responseBean, YES);
         
@@ -324,6 +379,21 @@
     [AJNetworkLog logWithContent:[NSString stringWithFormat:@"请求失败：%@", [error description]]];
     
     callBack(nil, NO);
+}
+
+
++ (void)saveCacheWithRequestBean:(__kindof RequestBeanBase *) requestBean responseObj:(id  _Nullable) responseObject
+{
+    SPTPersistentCache *httpCache = [[AJNetworkConfig shareInstance] globalHttpCache];
+    
+    NSData *cacheData = [responseObject mj_JSONData];
+    NSString *cacheKey = [self cacheKeyWithRequestBean:requestBean];
+    
+    [httpCache storeData:cacheData forKey:cacheKey locked:NO withCallback:^(SPTPersistentCacheResponse * _Nonnull response) {
+        
+        AJLog(@"缓存数据：%@", [response description]);
+        
+    } onQueue:dispatch_get_main_queue()];
 }
 
 @end

@@ -36,10 +36,13 @@ typedef NS_ENUM(NSInteger, HTTP_SCHEME)
     HTTP_SCHEME_HTTPS
 };
 
+@class SPTPersistentCache;
 
 @interface AJNetworkConfig : NSObject
 
 + (AJNetworkConfig *)shareInstance;
+
+- (SPTPersistentCache *)globalHttpCache;
 
 /// 服务器域名
 @property (nonatomic, copy) NSString *hostUrl;

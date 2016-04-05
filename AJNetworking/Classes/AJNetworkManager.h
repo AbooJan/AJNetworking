@@ -44,4 +44,14 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
  */
 + ( NSURLSessionDownloadTask * _Nullable )downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase * _Nonnull)requestBean progress:(AJDownloadProgressCallBack _Nullable )progressCallBack completion:(AJDownloadCompletionCallBack _Nullable)completionCallBack;
 
+/**
+ *  @author aboojan
+ *
+ *  @brief 读取缓存
+ *
+ *  @param requestBean 请求Bean
+ *  @param callBack    读取缓存回调
+ */
++ (void)cacheWithRequestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack;
+
 @end

@@ -86,6 +86,15 @@
 /**
  *  @author aboojan
  *
+ *  @brief 是否缓存请求结果,默认不缓存
+ *
+ *  @return YES，缓存；NO，不缓存
+ */
+- (BOOL)cacheResponse;
+
+/**
+ *  @author aboojan
+ *
  *  @brief 忽略的请求参数名称数组
  *
  *  @return 忽略参数数组，如：@[@"param1", @"param2"]

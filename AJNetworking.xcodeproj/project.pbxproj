@@ -21,7 +21,6 @@
 		CC9D0DBE1C9E9B9200607B5C /* RequestBeanPhoneNum.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9D0DBD1C9E9B9200607B5C /* RequestBeanPhoneNum.m */; };
 		CC9D0DC11C9E9BAE00607B5C /* ResponseBeanPhoneNum.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9D0DC01C9E9BAE00607B5C /* ResponseBeanPhoneNum.m */; };
 		CC9D0DC41C9EA52A00607B5C /* PhoneInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9D0DC31C9EA52A00607B5C /* PhoneInfo.m */; };
-		DB2B2A8F1CAE52E700C43F18 /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2B2A8E1CAE52E700C43F18 /* MD5Util.m */; };
 		DB33B43A1CA63BF100DB1D05 /* RequestBeanLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB33B4391CA63BF100DB1D05 /* RequestBeanLogin.m */; };
 		DB33B43D1CA63C1000DB1D05 /* ResponseBeanLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB33B43C1CA63C1000DB1D05 /* ResponseBeanLogin.m */; };
 		DB33B4401CA63CA900DB1D05 /* CompanyBean.m in Sources */ = {isa = PBXBuildFile; fileRef = DB33B43F1CA63CA900DB1D05 /* CompanyBean.m */; };
@@ -44,6 +43,7 @@
 		DB64CC3D1CA143C400180682 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB64CC3C1CA143C400180682 /* CoreFoundation.framework */; };
 		DB64CC3F1CA143CA00180682 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB64CC3E1CA143CA00180682 /* Foundation.framework */; };
 		DB64CC411CA143D000180682 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB64CC401CA143D000180682 /* UIKit.framework */; };
+		DB7B4A491CB3BC3600094D3B /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7B4A481CB3BC3600094D3B /* MD5Util.m */; };
 		DBE25F771CAB80A600D9FBEA /* ResponseBeanDownloadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F761CAB80A600D9FBEA /* ResponseBeanDownloadFile.m */; };
 		DBE25F7A1CAB80C600D9FBEA /* RequestBeanDownloadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F791CAB80C600D9FBEA /* RequestBeanDownloadFile.m */; };
 		DBE25F7E1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F7D1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m */; };
@@ -79,8 +79,6 @@
 		CC9D0DC01C9E9BAE00607B5C /* ResponseBeanPhoneNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanPhoneNum.m; sourceTree = "<group>"; };
 		CC9D0DC21C9EA52A00607B5C /* PhoneInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneInfo.h; sourceTree = "<group>"; };
 		CC9D0DC31C9EA52A00607B5C /* PhoneInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneInfo.m; sourceTree = "<group>"; };
-		DB2B2A8D1CAE52E700C43F18 /* MD5Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Util.h; sourceTree = "<group>"; };
-		DB2B2A8E1CAE52E700C43F18 /* MD5Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Util.m; sourceTree = "<group>"; };
 		DB33B4381CA63BF100DB1D05 /* RequestBeanLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanLogin.h; sourceTree = "<group>"; };
 		DB33B4391CA63BF100DB1D05 /* RequestBeanLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanLogin.m; sourceTree = "<group>"; };
 		DB33B43B1CA63C1000DB1D05 /* ResponseBeanLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanLogin.h; sourceTree = "<group>"; };
@@ -121,6 +119,8 @@
 		DB64CC3E1CA143CA00180682 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB64CC401CA143D000180682 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DB64CC421CA146EE00180682 /* RequestBeanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanProtocol.h; sourceTree = "<group>"; };
+		DB7B4A471CB3BC3600094D3B /* MD5Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Util.h; sourceTree = "<group>"; };
+		DB7B4A481CB3BC3600094D3B /* MD5Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Util.m; sourceTree = "<group>"; };
 		DBE25F751CAB80A600D9FBEA /* ResponseBeanDownloadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanDownloadFile.h; sourceTree = "<group>"; };
 		DBE25F761CAB80A600D9FBEA /* ResponseBeanDownloadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanDownloadFile.m; sourceTree = "<group>"; };
 		DBE25F781CAB80C600D9FBEA /* RequestBeanDownloadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDownloadFile.h; sourceTree = "<group>"; };
@@ -214,6 +214,7 @@
 		CC1601CA1C9D016F00954797 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DB7B4A461CB3BC3600094D3B /* Utils */,
 				CC1601CB1C9D016F00954797 /* Model */,
 				CC1601D21C9D01C200954797 /* AJNetworkConfig.h */,
 				CC1601D31C9D01C200954797 /* AJNetworkConfig.m */,
@@ -303,8 +304,6 @@
 				DB64CC2C1CA1389A00180682 /* RegexKitLite */,
 				DB33B44B1CA65FEC00DB1D05 /* NSData+Base64.h */,
 				DB33B44C1CA65FEC00DB1D05 /* NSData+Base64.m */,
-				DB2B2A8D1CAE52E700C43F18 /* MD5Util.h */,
-				DB2B2A8E1CAE52E700C43F18 /* MD5Util.m */,
 				DB33B4441CA65F8300DB1D05 /* TripleDESEncrypt.h */,
 				DB33B4451CA65F8300DB1D05 /* TripleDESEncrypt.m */,
 			);
@@ -347,6 +346,15 @@
 				DB64CC301CA1389A00180682 /* RegexKitLite.m */,
 			);
 			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
+		DB7B4A461CB3BC3600094D3B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DB7B4A471CB3BC3600094D3B /* MD5Util.h */,
+				DB7B4A481CB3BC3600094D3B /* MD5Util.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,8 +480,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB33B4461CA65F8300DB1D05 /* TripleDESEncrypt.m in Sources */,
+				DB7B4A491CB3BC3600094D3B /* MD5Util.m in Sources */,
 				DB388EA01CA9466E00702CE0 /* RequestBeanAlipayConfig.m in Sources */,
-				DB2B2A8F1CAE52E700C43F18 /* MD5Util.m in Sources */,
 				DBE25F771CAB80A600D9FBEA /* ResponseBeanDownloadFile.m in Sources */,
 				CC1601D11C9D01AA00954797 /* ResponseBeanBase.m in Sources */,
 				DBE25F7A1CAB80C600D9FBEA /* RequestBeanDownloadFile.m in Sources */,

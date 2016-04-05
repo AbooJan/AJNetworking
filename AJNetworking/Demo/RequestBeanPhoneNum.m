@@ -25,4 +25,9 @@
     return @"/apistore/mobilenumber/mobilenumber";
 }
 
+- (BOOL)cacheResponse
+{
+    return YES;
+}
+
 @end

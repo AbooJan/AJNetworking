@@ -61,6 +61,11 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
     return nil;
 }
 
+- (BOOL)cacheResponse
+{
+    return NO;
+}
+
 + (NSArray<NSString *> *)mj_ignoredPropertyNames
 {
     return @[];

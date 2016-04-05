@@ -42,9 +42,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    AJLog(@"%@", documentsPath);
 }
  
 - (IBAction)loginBtnClick:(id)sender
