@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name            = "AJNetworking"
-  s.version         = "2.0.0"
+  s.version         = "2.1.0"
   s.summary      = "AJNetworking是对AFNetworking 3.0 版本的封装，集合了JSON序列化、数据缓存功能"
 
   s.description  = <<-DESC
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.author           = { "AbooJan" => "aboojaner@gmail.com" }
   s.platform        = :ios, "7.0"
   s.ios.deployment_target = "7.0"
-  s.source          = { :git => "https://github.com/AbooJan/AJNetworking.git", :tag => "2.0.0" }
+  s.source          = { :git => "https://github.com/AbooJan/AJNetworking.git", :tag => "2.1.0" }
   s.source_files  = "AJNetworking/Classes/*","AJNetworking/Classes/Model/*","AJNetworking/Classes/Utils/*"
   s.requires_arc  = true
   
