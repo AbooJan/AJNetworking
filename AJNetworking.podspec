@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => "MIT", :file => "LICENSE" }
   s.author           = { "AbooJan" => "aboojaner@gmail.com" }
   s.platform        = :ios, "7.0"
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = "7.0"
   s.source          = { :git => "https://github.com/AbooJan/AJNetworking.git", :tag => s.version }
   s.source_files  = "AJNetworking/Classes/*","AJNetworking/Classes/Model/*","AJNetworking/Classes/Utils/*"
   s.requires_arc  = true
