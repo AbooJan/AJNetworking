@@ -48,8 +48,6 @@
             [self readFromNetwork];
         }
     }];
-    
-//    [self performSelector:@selector(readFromNetwork) withObject:nil afterDelay:3.0];
 }
 
 - (void)readFromNetwork

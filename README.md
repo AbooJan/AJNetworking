@@ -175,7 +175,69 @@ pod 'AJNetworking'
  	[self.downloadTask cancel];
  	```
  
- 
+ --
+
+#### 五、读取缓存
+
+1. 读取已缓存数据跟发起普通请求类似，使用 `AJNetworkManager` 的以下方法：
+
+```
+/**
+ *  @author aboojan
+ *
+ *  @brief 读取缓存
+ *
+ *  @param requestBean 请求Bean
+ *  @param callBack    读取缓存回调
+ */
++ (void)cacheWithRequestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack
+```
+
+2. 如果要缓存请求数据，需要请求类实现协议 `RequestBeanProtocol` 的以下方法:
+
+```
+/**
+ *  @author aboojan
+ *
+ *  @brief 是否缓存请求结果,默认不缓存
+ *
+ *  @return YES，缓存；NO，不缓存
+ */
+- (BOOL)cacheResponse;
+``` 
+
+3. 默认缓存是长期有效的，如果需要控制缓存的有效时间，需要请求类实现协议 `RequestBeanProtocol` 的以下方法:
+
+```
+/**
+ *  @author aboojan
+ *
+ *  @brief 缓存有效时间，单位为秒, 默认为0,即长期有效；
+ *
+ *  @return 有效时间
+ */
+- (NSUInteger)cacheLiveSecond;
+```
+
+4. 发起请求的时候可以先读取缓存，当缓存不存在或已失效的时候才真正发起请求：
+
+```
+    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+        
+        if (success) {
+            
+            // 读取缓存
+            [self handleReponse:response];
+            
+        }else{
+
+            // 发起网络请求
+            [self readFromNetwork];
+        }
+    }];
+```
+
+ --
  
 ## 感谢
  
@@ -193,5 +255,4 @@ pod 'AJNetworking'
  	
  	
  	
-
 
