@@ -239,6 +239,46 @@ pod 'AJNetworking'
 
  --
  
+#### 六、全局缓存配置
+1. 缓存配置类 `AJCacheOptions` , 提供3个可选配置项：
+
+ ```objective-c
+ /**
+ *  @author aboojan
+ *
+ *  @brief 缓存存放路径
+ */
+@property (nonatomic, copy) NSString *cachePath;
+
+/**
+ *  @author aboojan
+ *
+ *  @brief 缓存过期时间,最小不能小于60s
+ */
+@property (nonatomic, assign) NSUInteger globalCacheExpirationSecond;
+
+/**
+ *  @author aboojan
+ *
+ *  @brief 缓存自动回收时间,最小不能小于60s
+ */
+@property (nonatomic, assign) NSUInteger globalCacheGCSecond;
+ ```
+
+
+2. 缓存配置跟网络配置一样，通过类 `AJNetworkConfig` 类设置，例如:
+
+ ```objective-c
+ AJCacheOptions *cacheOptions = [AJCacheOptions new];
+ cacheOptions.cachePath = [documentsPath stringByAppendingPathComponent:@"aj_network_cache"];
+ cacheOptions.globalCacheExpirationSecond = 60;
+ cacheOptions.globalCacheGCSecond = 2 * 60;
+ networkConfig.cacheOptions = cacheOptions;
+ ```
+
+
+ --
+ 
 ## 感谢
  
    依赖框架   | 
