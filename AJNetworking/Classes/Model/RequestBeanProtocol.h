@@ -95,6 +95,15 @@
 /**
  *  @author aboojan
  *
+ *  @brief 缓存有效时间，单位为秒, 默认为0,即长期有效；
+ *
+ *  @return 有效时间
+ */
+- (NSUInteger)cacheLiveSecond;
+
+/**
+ *  @author aboojan
+ *
  *  @brief 忽略的请求参数名称数组
  *
  *  @return 忽略参数数组，如：@[@"param1", @"param2"]

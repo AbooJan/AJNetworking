@@ -43,10 +43,13 @@
             ResponseBeanPhoneNum *response = responseBean;
             
             [self handleReponse:response];
+            
+        }else{
+            [self readFromNetwork];
         }
     }];
     
-    [self performSelector:@selector(readFromNetwork) withObject:nil afterDelay:3.0];
+//    [self performSelector:@selector(readFromNetwork) withObject:nil afterDelay:3.0];
 }
 
 - (void)readFromNetwork

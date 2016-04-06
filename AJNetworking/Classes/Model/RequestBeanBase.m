@@ -66,6 +66,11 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
     return NO;
 }
 
+- (NSUInteger)cacheLiveSecond
+{
+    return 0;
+}
+
 + (NSArray<NSString *> *)mj_ignoredPropertyNames
 {
     return @[];

@@ -318,6 +318,9 @@
                 responseBean.rawData = jsonDic;
                 
                 callBack(responseBean, YES);
+                
+            }else{
+                callBack(nil, NO);
             }
             
         } onQueue:dispatch_get_main_queue()];
@@ -388,10 +391,15 @@
     
     NSData *cacheData = [responseObject mj_JSONData];
     NSString *cacheKey = [self cacheKeyWithRequestBean:requestBean];
+    NSTimeInterval ttl = [requestBean cacheLiveSecond];
     
-    [httpCache storeData:cacheData forKey:cacheKey locked:NO withCallback:^(SPTPersistentCacheResponse * _Nonnull response) {
+    [httpCache storeData:cacheData forKey:cacheKey ttl:ttl locked:NO withCallback:^(SPTPersistentCacheResponse * _Nonnull response) {
         
-        AJLog(@"缓存数据：%@", [response description]);
+        if (response.result == SPTPersistentCacheResponseCodeOperationSucceeded) {
+            AJLog(@"#cache data success#: %@", cacheKey);
+        }else{
+            AJLog(@"#cache fail#: %@", [response.error description]);
+        }
         
     } onQueue:dispatch_get_main_queue()];
 }
