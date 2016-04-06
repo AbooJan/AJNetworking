@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
+#import "AJCacheOptions.h"
 
 #ifdef DEBUG
 #   define AJLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
@@ -50,5 +51,7 @@ typedef NS_ENUM(NSInteger, HTTP_SCHEME)
 @property (nonatomic, assign) CFStringRef httpsCertificatePassword;
 /// HTTPS 证书路径
 @property (nonatomic, copy) NSString *httpsCertificatePath;
+/// 缓存配置
+@property (nonatomic, strong) AJCacheOptions *cacheOptions;
 
 @end

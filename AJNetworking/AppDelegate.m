@@ -28,6 +28,12 @@
     networkConfig.httpsCertificatePassword = CFSTR("123456789");
     networkConfig.httpsCertificatePath = [[NSBundle mainBundle] pathForResource:@"client_test_local" ofType:@"p12"];
     
+    // 网络缓存配置
+    AJCacheOptions *cacheOptions = [AJCacheOptions new];
+    cacheOptions.cachePath = [documentsPath stringByAppendingPathComponent:@"aj_network_cache"];
+    cacheOptions.globalCacheExpirationSecond = 60;
+    cacheOptions.globalCacheGCSecond = 2 * 60;
+    networkConfig.cacheOptions = cacheOptions;
 
     return YES;
 }

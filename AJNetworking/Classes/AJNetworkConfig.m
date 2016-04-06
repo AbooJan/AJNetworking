@@ -9,6 +9,9 @@
 #import "AJNetworkConfig.h"
 #import <SPTPersistentCache/SPTPersistentCache.h>
 
+#define kBundleID [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
+
+
 @interface AJNetworkConfig ()
 /// 网络缓存
 @property (nonatomic, strong) SPTPersistentCache *httpCache;
@@ -29,22 +32,41 @@
 
 - (SPTPersistentCache *)globalHttpCache
 {
-    if (_httpCache == nil) {
+    if (!_httpCache) {
         
-        NSString *bundleID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
-        NSString *cachePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", bundleID]];
-        NSString *cacheIdentifier = [NSString stringWithFormat:@"%@.cache", bundleID];
+        NSString *cacheIdentifier = [NSString stringWithFormat:@"%@.cache", kBundleID];
         
         // 缓存配置
-        SPTPersistentCacheOptions *options = [[SPTPersistentCacheOptions alloc] initWithCachePath:cachePath identifier:cacheIdentifier defaultExpirationInterval:SPTPersistentCacheDefaultExpirationTimeSec garbageCollectorInterval:SPTPersistentCacheDefaultGCIntervalSec debug:^(NSString * _Nonnull string) {
-            
-            AJLog(@"###SPTPersistentCache###: %@", string);
-        }];
+        SPTPersistentCacheOptions *options = [[SPTPersistentCacheOptions alloc]
+                                              initWithCachePath:self.cacheOptions.cachePath
+                                              identifier:cacheIdentifier
+                                              defaultExpirationInterval:self.cacheOptions.globalCacheExpirationSecond
+                                              garbageCollectorInterval:self.cacheOptions.globalCacheGCSecond
+                                              debug:^(NSString * _Nonnull string) {
+                                                  
+                                                  AJLog(@"###SPTPersistentCache###: %@", string);
+                                              }];
         
         _httpCache = [[SPTPersistentCache alloc] initWithOptions:options];
+        [_httpCache scheduleGarbageCollector];
     }
     
     return _httpCache;
 }
+
+- (AJCacheOptions *)cacheOptions
+{
+    if (!_cacheOptions){
+        
+        _cacheOptions = [[AJCacheOptions alloc] init];
+        
+        _cacheOptions.cachePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", kBundleID]];
+        _cacheOptions.globalCacheExpirationSecond = AJCacheDefaultExpirationSecond;
+        _cacheOptions.globalCacheGCSecond = AJCacheDefaultGCSecond;
+    }
+    
+    return _cacheOptions;
+}
+
 
 @end

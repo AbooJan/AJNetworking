@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HttpDefine.h"
 #import "ResponseBeanProtocol.h"
 #import "AJNetworkConfig.h"
 

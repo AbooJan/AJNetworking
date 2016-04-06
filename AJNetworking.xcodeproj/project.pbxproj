@@ -46,6 +46,7 @@
 		DBE25F771CAB80A600D9FBEA /* ResponseBeanDownloadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F761CAB80A600D9FBEA /* ResponseBeanDownloadFile.m */; };
 		DBE25F7A1CAB80C600D9FBEA /* RequestBeanDownloadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F791CAB80C600D9FBEA /* RequestBeanDownloadFile.m */; };
 		DBE25F7E1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F7D1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m */; };
+		DBE5DDAA1CB4E9C8006127E9 /* AJCacheOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE5DDA91CB4E9C8006127E9 /* AJCacheOptions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +70,6 @@
 		CC1601D41C9D01C200954797 /* AJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworking.h; sourceTree = "<group>"; };
 		CC1601D51C9D01C200954797 /* AJNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworkManager.h; sourceTree = "<group>"; };
 		CC1601D61C9D01C200954797 /* AJNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNetworkManager.m; sourceTree = "<group>"; };
-		CC1601D91C9D7D7600954797 /* HttpDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDefine.h; sourceTree = "<group>"; };
 		CC9D0DB81C9E985E00607B5C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CC9D0DB91C9E985E00607B5C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CC9D0DBC1C9E9B9200607B5C /* RequestBeanPhoneNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanPhoneNum.h; sourceTree = "<group>"; };
@@ -124,6 +124,8 @@
 		DBE25F791CAB80C600D9FBEA /* RequestBeanDownloadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDownloadFile.m; sourceTree = "<group>"; };
 		DBE25F7C1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDownloadTaskBase.h; sourceTree = "<group>"; };
 		DBE25F7D1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDownloadTaskBase.m; sourceTree = "<group>"; };
+		DBE5DDA81CB4E9C8006127E9 /* AJCacheOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJCacheOptions.h; sourceTree = "<group>"; };
+		DBE5DDA91CB4E9C8006127E9 /* AJCacheOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJCacheOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +222,8 @@
 				CC1601D61C9D01C200954797 /* AJNetworkManager.m */,
 				DB388E981CA90F6100702CE0 /* AJNetworkLog.h */,
 				DB388E991CA90F6100702CE0 /* AJNetworkLog.m */,
-				CC1601D91C9D7D7600954797 /* HttpDefine.h */,
+				DBE5DDA81CB4E9C8006127E9 /* AJCacheOptions.h */,
+				DBE5DDA91CB4E9C8006127E9 /* AJCacheOptions.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				DB388E9D1CA9392400702CE0 /* AlipayConfigBean.m in Sources */,
 				CC9D0DBA1C9E985E00607B5C /* ViewController.m in Sources */,
 				CC1601D81C9D01C200954797 /* AJNetworkManager.m in Sources */,
+				DBE5DDAA1CB4E9C8006127E9 /* AJCacheOptions.m in Sources */,
 				DB33B44A1CA65F9C00DB1D05 /* Base64.m in Sources */,
 				DB33B4431CA63ED400DB1D05 /* ResponseBeanExample.m in Sources */,
 				DB388E971CA9077E00702CE0 /* LoginViewController.m in Sources */,

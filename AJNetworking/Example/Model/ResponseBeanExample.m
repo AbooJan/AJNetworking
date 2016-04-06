@@ -25,7 +25,7 @@
 
 - (BOOL)checkSuccess
 {
-    if (self.status == SUCCESS_CODE) {
+    if (self.status == 0) {
         return YES;
     }else{
         return NO;

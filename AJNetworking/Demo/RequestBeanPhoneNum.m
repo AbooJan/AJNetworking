@@ -30,9 +30,9 @@
     return YES;
 }
 
-- (NSUInteger)cacheLiveSecond
-{
-    return 30;
-}
+//- (NSUInteger)cacheLiveSecond
+//{
+//    return 30;
+//}
 
 @end

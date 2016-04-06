@@ -16,5 +16,6 @@
 #import "RequestBeanDownloadTaskBase.h"
 #import "RequestBeanProtocol.h"
 #import "ResponseBeanProtocol.h"
+#import "AJCacheOptions.h"
 
 #endif /* AJNetworking_h */
