@@ -18,7 +18,7 @@ pod 'AJNetworking'
 #### 一、 网络配置
 1. 全局网络配置，需要使用类 `AJNetworkConfig`  在  `AppDelegate` 中配置.
 	
-	```
+	```objective-c
 	/// 服务器域名
 	@property (nonatomic, copy) NSString *hostUrl;
 	/// HTTPS 证书密码
@@ -53,7 +53,7 @@ pod 'AJNetworking'
  
 5. 发起请求由类 `AJNetworkManager` 管理，里面负责网络的请求和返回数据的处理，示例：
  
- 	```
+ 	```objective-c
  	// 手机号码归属地查询
  	RequestBeanPhoneNum *requestBean = [[RequestBeanPhoneNum alloc] init];
     requestBean.phone = phoneStr;
@@ -76,7 +76,7 @@ pod 'AJNetworking'
 
 1. 请求类需要实现协议 `RequestBeanProtocol` 中的方法, 这个参考了 `YTKNetwork` 框架:
 
-	```
+	```objective-c
 	/**
  	 *  @author aboojan
  	 *
@@ -89,7 +89,7 @@ pod 'AJNetworking'
 	
 2. 方法实现示例：
 
-	```
+	```objective-c
 	- (AFConstructingBlock)constructingBodyBlock
 	{
     	NSData *data = UIImageJPEGRepresentation(self.avatar, 0.8);
@@ -105,7 +105,7 @@ pod 'AJNetworking'
 	
 3. 文件上传请求示例，跟发起普通请求一样：
 
-	```
+	```objective-c
 	RequestBeanUploadAvatar *requestBean = [[RequestBeanUploadAvatar alloc] init];
     requestBean.compid = @"1702487";
     requestBean.avatar = [UIImage imageNamed:@"testImg"];
@@ -123,7 +123,7 @@ pod 'AJNetworking'
 
 1. 文件下载跟普通请求不同，需要使用类 `AJNetworkManager` 中的以下方法：
 
-	```
+	```objective-c
 	/**
  	 *  @author aboojan
  	 *
@@ -140,7 +140,7 @@ pod 'AJNetworking'
 
 2. 文件下载请求类使用 `RequestBeanDownloadTaskBase`，使用示例：
 
-	```
+	```objective-c
 	RequestBeanDownloadTaskBase *downloadRequest = [[RequestBeanDownloadTaskBase alloc] init];
 	downloadRequest.fileUrl = @"http://temp.26923.com/2016/pic/000/378/032ad9af805a8e83d8323f515d1d6645.jpg";
  	downloadRequest.saveFileName = @"desktop.jpg";
@@ -164,7 +164,7 @@ pod 'AJNetworking'
  
 3. 下载任务控制, 通过下载请求返回的 `NSURLSessionDownloadTask` 实例来处理。
  
- 	```
+ 	```objective-c
  	// 暂停任务 
  	[self.downloadTask suspend];
  
@@ -181,47 +181,47 @@ pod 'AJNetworking'
 
 1. 读取已缓存数据跟发起普通请求类似，使用 `AJNetworkManager` 的以下方法：
 
-```
-/**
- *  @author aboojan
- *
- *  @brief 读取缓存
- *
- *  @param requestBean 请求Bean
- *  @param callBack    读取缓存回调
- */
-+ (void)cacheWithRequestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack
-```
+ ```objective-c
+ /**
+  *  @author aboojan
+  *
+  *  @brief 读取缓存
+  *
+  *  @param requestBean 请求Bean
+  *  @param callBack    读取缓存回调
+  */
+ + (void)cacheWithRequestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack
+ ```
 
 2. 如果要缓存请求数据，需要请求类实现协议 `RequestBeanProtocol` 的以下方法:
 
-```
-/**
- *  @author aboojan
- *
- *  @brief 是否缓存请求结果,默认不缓存
- *
- *  @return YES，缓存；NO，不缓存
- */
-- (BOOL)cacheResponse;
-``` 
+ ```objective-c
+ /**
+  *  @author aboojan
+  *
+  *  @brief 是否缓存请求结果,默认不缓存
+  *
+  *  @return YES，缓存；NO，不缓存
+  */
+ - (BOOL)cacheResponse;
+ ``` 
 
 3. 默认缓存是长期有效的，如果需要控制缓存的有效时间，需要请求类实现协议 `RequestBeanProtocol` 的以下方法:
 
-```
-/**
- *  @author aboojan
- *
- *  @brief 缓存有效时间，单位为秒, 默认为0,即长期有效；
- *
- *  @return 有效时间
- */
-- (NSUInteger)cacheLiveSecond;
-```
+ ```objective-c
+ /**
+  *  @author aboojan
+  *
+  *  @brief 缓存有效时间，单位为秒, 默认为0,即长期有效；
+  *
+  *  @return 有效时间
+  */
+ - (NSUInteger)cacheLiveSecond;
+ ```
 
 4. 发起请求的时候可以先读取缓存，当缓存不存在或已失效的时候才真正发起请求：
 
-```
+ ```objective-c
     [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
         
         if (success) {
@@ -235,7 +235,7 @@ pod 'AJNetworking'
             [self readFromNetwork];
         }
     }];
-```
+ ```
 
  --
  
