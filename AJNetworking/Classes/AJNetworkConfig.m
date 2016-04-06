@@ -65,6 +65,19 @@
         _cacheOptions.globalCacheGCSecond = AJCacheDefaultGCSecond;
     }
     
+    if( (_cacheOptions.cachePath == nil) || [_cacheOptions.cachePath isEqualToString:@""] )
+    {
+        _cacheOptions.cachePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", kBundleID]];
+    }
+    
+    if (_cacheOptions.globalCacheExpirationSecond < 60) {
+        _cacheOptions.globalCacheExpirationSecond = AJCacheDefaultExpirationSecond;
+    }
+    
+    if (_cacheOptions.globalCacheGCSecond < 60) {
+        _cacheOptions.globalCacheGCSecond = AJCacheDefaultGCSecond;
+    }
+    
     return _cacheOptions;
 }
 
