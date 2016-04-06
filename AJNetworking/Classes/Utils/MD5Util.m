@@ -9,12 +9,9 @@
 #import "MD5Util.h"
 #import <CommonCrypto/CommonDigest.h>
 #include <objc/runtime.h>
-#import "RegexKitLite.h"
 
 // MD5加密因子
 #define MD5_DEFAULT_ENCRYPTION_FACTOR @"123456789"
-///字母+数字
-#define REGXEX_LETTER_AND_NUM           @"[a-zA-Z\\d]"
 
 @implementation MD5Util
 
@@ -33,25 +30,9 @@
         factor = MD5_DEFAULT_ENCRYPTION_FACTOR;
     }
     
-    NSString *s  = [self cleanSpecialCharForMD5:targetContent];
-    NSString *s1 = [self md5WithoutEncryptionFactor:[s stringByAppendingString:factor]];
+    NSString *s1 = [self md5WithoutEncryptionFactor:[targetContent stringByAppendingString:factor]];
     NSString *s2 = [self md5WithoutEncryptionFactor:s1];
     return s2;
-}
-
-+ (NSString *)cleanSpecialCharForMD5:(NSString *) aString{
-    
-    NSArray *letterAndNums = [aString arrayOfCaptureComponentsMatchedByRegex:REGXEX_LETTER_AND_NUM];
-    if (letterAndNums != nil && letterAndNums.count>0) {
-        NSMutableString *s = [NSMutableString new];
-        for (NSArray *arr in letterAndNums) {
-            for (NSString *code in arr) {
-                [s appendString:code];
-            }
-        }
-        return s;
-    }
-    return @"";
 }
 
 

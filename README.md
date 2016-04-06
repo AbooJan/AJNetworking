@@ -245,6 +245,7 @@ pod 'AJNetworking'
  ------------ |
  [AFNetwoking](https://github.com/AFNetworking/AFNetworking) |
  [MJExtension](https://github.com/CoderMJLee/MJExtension)    |
+ [SPTPersistentCache](https://github.com/spotify/SPTPersistentCache) |
 	
  	
  	
