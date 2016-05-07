@@ -1,6 +1,7 @@
 # AJNetworking
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/AJNetworking.svg)](https://cocoapods.org/?q=AJNetworking)
+[![ghit.me](https://ghit.me/badge.svg?repo=AbooJan/AJNetworking)](https://ghit.me/repo/AbooJan/AJNetworking)
 
 AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问题
 
