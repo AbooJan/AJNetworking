@@ -6,10 +6,34 @@
 	<dict>
 		<key>api</key>
 		<string>/login</string>
-		<key>schme</key>
+		<key>scheme</key>
 		<string>HTTP</string>
 		<key>method</key>
 		<string>GET</string>
+		<key>desc</key>
+		<string>接口描述：登陆</string>
+	</dict>
+	<key>RequestBeanDemoRegister</key>
+	<dict>
+		<key>api</key>
+		<string>/register</string>
+		<key>scheme</key>
+		<string>HTTP</string>
+		<key>method</key>
+		<string>POST</string>
+		<key>desc</key>
+		<string>接口描述：注册</string>
+	</dict>
+	<key>RequestBeanDemoNews</key>
+	<dict>
+		<key>api</key>
+		<string>/news</string>
+		<key>scheme</key>
+		<string>HTTP</string>
+		<key>method</key>
+		<string>GET</string>
+		<key>desc</key>
+		<string>获取新闻列表</string>
 	</dict>
 </dict>
 </plist>

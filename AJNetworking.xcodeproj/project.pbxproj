@@ -14,6 +14,10 @@
 		CC0EA34A1D55F49B00254A00 /* RequestBeanDemoLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3491D55F49B00254A00 /* RequestBeanDemoLogin.m */; };
 		CC0EA34D1D55F4CA00254A00 /* ResponseBeanDemoLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA34C1D55F4CA00254A00 /* ResponseBeanDemoLogin.m */; };
 		CC0EA3501D55F62400254A00 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA34F1D55F62400254A00 /* User.m */; };
+		CC0EA3531D56106300254A00 /* RequestBeanDemoRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3521D56106300254A00 /* RequestBeanDemoRegister.m */; };
+		CC0EA3561D56108E00254A00 /* ResponseBeanDemoRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3551D56108E00254A00 /* ResponseBeanDemoRegister.m */; };
+		CC0EA3591D563A5600254A00 /* RequestBeanDemoNews.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3581D563A5600254A00 /* RequestBeanDemoNews.m */; };
+		CC0EA35C1D563A7E00254A00 /* ResponseBeanDemoNews.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA35B1D563A7E00254A00 /* ResponseBeanDemoNews.m */; };
 		CC1601B51C9D007400954797 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601B41C9D007400954797 /* main.m */; };
 		CC1601B81C9D007400954797 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601B71C9D007400954797 /* AppDelegate.m */; };
 		CC1601BE1C9D007400954797 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1601BC1C9D007400954797 /* Main.storyboard */; };
@@ -66,6 +70,14 @@
 		CC0EA34C1D55F4CA00254A00 /* ResponseBeanDemoLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanDemoLogin.m; sourceTree = "<group>"; };
 		CC0EA34E1D55F62400254A00 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		CC0EA34F1D55F62400254A00 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		CC0EA3511D56106300254A00 /* RequestBeanDemoRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDemoRegister.h; sourceTree = "<group>"; };
+		CC0EA3521D56106300254A00 /* RequestBeanDemoRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDemoRegister.m; sourceTree = "<group>"; };
+		CC0EA3541D56108E00254A00 /* ResponseBeanDemoRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanDemoRegister.h; sourceTree = "<group>"; };
+		CC0EA3551D56108E00254A00 /* ResponseBeanDemoRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanDemoRegister.m; sourceTree = "<group>"; };
+		CC0EA3571D563A5600254A00 /* RequestBeanDemoNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDemoNews.h; sourceTree = "<group>"; };
+		CC0EA3581D563A5600254A00 /* RequestBeanDemoNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDemoNews.m; sourceTree = "<group>"; };
+		CC0EA35A1D563A7E00254A00 /* ResponseBeanDemoNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanDemoNews.h; sourceTree = "<group>"; };
+		CC0EA35B1D563A7E00254A00 /* ResponseBeanDemoNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanDemoNews.m; sourceTree = "<group>"; };
 		CC1601B01C9D007400954797 /* AJNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AJNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC1601B41C9D007400954797 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CC1601B61C9D007400954797 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -277,6 +289,14 @@
 				CC0EA34C1D55F4CA00254A00 /* ResponseBeanDemoLogin.m */,
 				CC0EA34E1D55F62400254A00 /* User.h */,
 				CC0EA34F1D55F62400254A00 /* User.m */,
+				CC0EA3511D56106300254A00 /* RequestBeanDemoRegister.h */,
+				CC0EA3521D56106300254A00 /* RequestBeanDemoRegister.m */,
+				CC0EA3541D56108E00254A00 /* ResponseBeanDemoRegister.h */,
+				CC0EA3551D56108E00254A00 /* ResponseBeanDemoRegister.m */,
+				CC0EA3571D563A5600254A00 /* RequestBeanDemoNews.h */,
+				CC0EA3581D563A5600254A00 /* RequestBeanDemoNews.m */,
+				CC0EA35A1D563A7E00254A00 /* ResponseBeanDemoNews.h */,
+				CC0EA35B1D563A7E00254A00 /* ResponseBeanDemoNews.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -491,12 +511,15 @@
 				CC1601D11C9D01AA00954797 /* ResponseBeanBase.m in Sources */,
 				CC0EA34A1D55F49B00254A00 /* RequestBeanDemoLogin.m in Sources */,
 				DBE25F7A1CAB80C600D9FBEA /* RequestBeanDownloadFile.m in Sources */,
+				CC0EA3531D56106300254A00 /* RequestBeanDemoRegister.m in Sources */,
 				DB33B43A1CA63BF100DB1D05 /* RequestBeanLogin.m in Sources */,
 				CC0EA3441D55EDAA00254A00 /* RequestConfig.m in Sources */,
+				CC0EA3591D563A5600254A00 /* RequestBeanDemoNews.m in Sources */,
 				DB64CC391CA1418D00180682 /* ResponseBeanDemo.m in Sources */,
 				DB33B4401CA63CA900DB1D05 /* CompanyBean.m in Sources */,
 				DB388E9D1CA9392400702CE0 /* AlipayConfigBean.m in Sources */,
 				CC9D0DBA1C9E985E00607B5C /* ViewController.m in Sources */,
+				CC0EA35C1D563A7E00254A00 /* ResponseBeanDemoNews.m in Sources */,
 				CC1601D81C9D01C200954797 /* AJNetworkManager.m in Sources */,
 				DBE5DDAA1CB4E9C8006127E9 /* AJCacheOptions.m in Sources */,
 				DB33B44A1CA65F9C00DB1D05 /* Base64.m in Sources */,
@@ -504,6 +527,7 @@
 				DB388E971CA9077E00702CE0 /* LoginViewController.m in Sources */,
 				CC1601B81C9D007400954797 /* AppDelegate.m in Sources */,
 				DB606EEC1CAA695500BD6272 /* RequestBeanUploadAvatar.m in Sources */,
+				CC0EA3561D56108E00254A00 /* ResponseBeanDemoRegister.m in Sources */,
 				CC1601D01C9D01AA00954797 /* RequestBeanBase.m in Sources */,
 				CC0EA3411D55ECE500254A00 /* RequestBeanDemoBase.m in Sources */,
 				CC1601B51C9D007400954797 /* main.m in Sources */,

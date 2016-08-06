@@ -10,15 +10,27 @@
 #import "AJNetworkManager.h"
 #import "RequestBeanDemoLogin.h"
 #import "ResponseBeanDemoLogin.h"
+#import "RequestBeanDemoRegister.h"
+#import "ResponseBeanDemoRegister.h"
+#import "RequestBeanDemoNews.h"
+#import "ResponseBeanDemoNews.h"
 #import "MJExtension.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *accountTF;
 @property (weak, nonatomic) IBOutlet UITextField *pwTF;
-@property (weak, nonatomic) IBOutlet UITextView *resultTV;
-
 - (IBAction)loginBtnClick:(UIButton *)sender;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *userNameTF;
+@property (weak, nonatomic) IBOutlet UITextField *pwTF1;
+- (IBAction)registerBtnClick:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *userIdTF;
+@property (weak, nonatomic) IBOutlet UITextField *dateTimeTF;
+- (IBAction)readNewsBtnClick:(id)sender;
 
 @end
 
@@ -47,6 +59,75 @@
                 // 返回结果处理
                 ResponseBeanDemoLogin *response = responseBean;
             }
+    }];
+}
+
+- (IBAction)registerBtnClick:(id)sender
+{
+    [self.view endEditing:YES];
+    
+    RequestBeanDemoRegister *requestBean = [RequestBeanDemoRegister new];
+    requestBean.userName = self.userNameTF.text;
+    requestBean.pw = self.pwTF1.text;
+    
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+        
+        if (success) {
+            
+            // 结果处理
+            ResponseBeanDemoRegister *responseBean = responseBean;
+        }
+        
+    }];
+    
+    
+}
+- (IBAction)readNewsBtnClick:(id)sender
+{
+    [self.view endEditing:YES];
+    
+    RequestBeanDemoNews *requestBean = [RequestBeanDemoNews new];
+    requestBean.userId = self.userIdTF.text;
+    requestBean.dateTime = self.dateTimeTF.text;
+    
+    // 1. 网络检测
+    
+    // 2. 缓存读取
+    
+    // 3. 网络请求
+    
+    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+        
+        if (success) {
+            
+            // 读取缓存结果处理
+            AJLog(@"#####读缓存#####");
+            
+            ResponseBeanDemoNews *response = responseBean;
+            for (News *page in response.data) {
+                AJLog(@"%@ -- %@ -- %@", page.title, page.content, page.author);
+            }
+            
+        }else{
+            
+            // 发起网络请求
+            [self sendRequest:requestBean];
+        }
+        
+    }];
+    
+}
+
+- (void)sendRequest:(RequestBeanDemoNews *)requestBean
+{
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+        
+        if (success) {
+            
+            // 结果处理
+            ResponseBeanDemoNews *response = responseBean;
+            
+        }
     }];
 }
 

@@ -9,7 +9,7 @@
 #import "RequestConfig.h"
 
 static NSString * const KEY_API    = @"api";
-static NSString * const KEY_SCHEME = @"schme";
+static NSString * const KEY_SCHEME = @"scheme";
 static NSString * const KEY_METHOD = @"method";
 
 @interface RequestConfig()
