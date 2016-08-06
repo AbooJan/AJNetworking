@@ -9,6 +9,6 @@
 #import "ResponseBeanBase.h"
 
 @interface ResponseBeanDemo : ResponseBeanBase <ResponseBeanProtocol>
-@property (nonatomic,strong) NSString *retMsg;
-@property (nonatomic,assign) NSInteger errNum;
+@property (nonatomic,strong) NSString *msg;
+@property (nonatomic,assign) NSInteger code;
 @end

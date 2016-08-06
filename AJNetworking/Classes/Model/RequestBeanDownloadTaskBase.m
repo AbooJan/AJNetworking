@@ -10,7 +10,7 @@
 
 @implementation RequestBeanDownloadTaskBase
 
-+ (NSArray<NSString *> *)mj_ignoredPropertyNames
++ (NSArray<NSString *> *)ignoredPropertyNames
 {
     return @[@"fileUrl", @"saveFilePath", @"saveFileName"];
 }

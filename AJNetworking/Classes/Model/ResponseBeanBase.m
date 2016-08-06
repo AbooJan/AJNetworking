@@ -7,7 +7,6 @@
 //
 
 #import "ResponseBeanBase.h"
-#import "MJExtension.h"
 
 @implementation ResponseBeanBase
 
@@ -25,7 +24,5 @@
 {
     return NO;
 }
-
-MJExtensionLogAllProperties
 
 @end

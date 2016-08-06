@@ -108,6 +108,6 @@
  *
  *  @return 忽略参数数组，如：@[@"param1", @"param2"]
  */
-+ (NSArray<__kindof NSString *> *)mj_ignoredPropertyNames;
++ (NSArray<__kindof NSString *> *)ignoredPropertyNames;
 
 @end

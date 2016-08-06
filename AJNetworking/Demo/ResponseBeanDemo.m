@@ -11,17 +11,17 @@
 @implementation ResponseBeanDemo
 - (NSInteger)statusCode
 {
-    return self.errNum;
+    return self.code;
 }
 
 - (NSString *)responseMessage
 {
-    return self.retMsg;
+    return self.msg;
 }
 
 - (BOOL)checkSuccess
 {
-    if (self.errNum == 0) {
+    if (self.code == 1) {
         return YES;
     }else{
         return NO;

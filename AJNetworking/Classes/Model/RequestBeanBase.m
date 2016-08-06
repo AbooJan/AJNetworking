@@ -71,9 +71,22 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
     return 0;
 }
 
-+ (NSArray<NSString *> *)mj_ignoredPropertyNames
++ (NSArray<NSString *> *)ignoredPropertyNames
 {
     return @[];
+}
+
++ (NSArray<NSString *> *)mj_ignoredPropertyNames
+{
+    NSMutableArray *ignoreArray = [NSMutableArray arrayWithArray:[self ignoredPropertyNames]];
+    
+    // 解决MJExtension最新版本的BUG
+    [ignoreArray addObject:@"debugDescription"];
+    [ignoreArray addObject:@"description"];
+    [ignoreArray addObject:@"hash"];
+    [ignoreArray addObject:@"superclass"];
+    
+    return ignoreArray;
 }
 
 @end

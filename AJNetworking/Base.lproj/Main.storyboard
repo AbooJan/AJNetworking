@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,48 +17,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bCi-Fk-TBa">
-                                <rect key="frame" x="20" y="40" width="460" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9fh-Bi-q0M"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTu-ET-lG5">
-                                <rect key="frame" x="500" y="40" width="80" height="30"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="rMd-BI-ggg"/>
-                                    <constraint firstAttribute="width" constant="80" id="w7H-RT-CPj"/>
-                                </constraints>
-                                <state key="normal" title="查询"/>
-                                <connections>
-                                    <action selector="checkBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5V-Uf-3dd"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LJA-Cy-aQe">
-                                <rect key="frame" x="20" y="90" width="560" height="490"/>
+                                <rect key="frame" x="20" y="154" width="560" height="426"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eeb-pR-GHE">
+                                <rect key="frame" x="16" y="36" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YRg-dL-fSp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Z-6c-VXy">
+                                <rect key="frame" x="16" y="70" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="r1x-tU-cLp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRX-kF-LLg">
+                                <rect key="frame" x="250" y="108" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="9Ud-yh-dsA"/>
+                                    <constraint firstAttribute="height" constant="30" id="iMf-sO-3Cq"/>
+                                </constraints>
+                                <state key="normal" title="登陆"/>
+                                <connections>
+                                    <action selector="loginBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mop-LY-h4I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eeb-pR-GHE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="1EJ-f3-tuw"/>
+                            <constraint firstItem="BRX-kF-LLg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3YB-TK-0Ob"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LJA-Cy-aQe" secondAttribute="bottom" constant="20" id="5uD-nC-vh1"/>
-                            <constraint firstAttribute="trailing" secondItem="yTu-ET-lG5" secondAttribute="trailing" constant="20" id="9YC-aI-Eei"/>
-                            <constraint firstItem="yTu-ET-lG5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="9zV-tH-630"/>
+                            <constraint firstAttribute="trailing" secondItem="eeb-pR-GHE" secondAttribute="trailing" constant="16" id="DPf-d5-ITl"/>
                             <constraint firstItem="LJA-Cy-aQe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="EF8-yk-6i2"/>
-                            <constraint firstItem="yTu-ET-lG5" firstAttribute="leading" secondItem="bCi-Fk-TBa" secondAttribute="trailing" constant="20" id="FB7-tL-zm8"/>
-                            <constraint firstItem="yTu-ET-lG5" firstAttribute="centerY" secondItem="bCi-Fk-TBa" secondAttribute="centerY" id="f0F-8J-SnR"/>
-                            <constraint firstItem="LJA-Cy-aQe" firstAttribute="top" secondItem="yTu-ET-lG5" secondAttribute="bottom" constant="20" id="sEr-Ks-cR3"/>
+                            <constraint firstItem="BRX-kF-LLg" firstAttribute="top" secondItem="Y4Z-6c-VXy" secondAttribute="bottom" constant="8" id="HoO-lh-ftL"/>
+                            <constraint firstItem="Y4Z-6c-VXy" firstAttribute="top" secondItem="eeb-pR-GHE" secondAttribute="bottom" constant="4" id="YCK-Bg-DP3"/>
+                            <constraint firstAttribute="trailing" secondItem="Y4Z-6c-VXy" secondAttribute="trailing" constant="16" id="gYD-FI-Y2W"/>
+                            <constraint firstItem="Y4Z-6c-VXy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="lmG-rn-mMS"/>
+                            <constraint firstItem="eeb-pR-GHE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="vmr-Qq-JGO"/>
+                            <constraint firstItem="LJA-Cy-aQe" firstAttribute="top" secondItem="BRX-kF-LLg" secondAttribute="bottom" constant="16" id="z0r-uc-hvO"/>
                             <constraint firstAttribute="trailing" secondItem="LJA-Cy-aQe" secondAttribute="trailing" constant="20" id="zbg-uY-otH"/>
-                            <constraint firstItem="bCi-Fk-TBa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="zp1-hR-BUe"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="phoneTF" destination="bCi-Fk-TBa" id="Wdd-py-UDJ"/>
+                        <outlet property="accountTF" destination="eeb-pR-GHE" id="rwY-g6-3bv"/>
+                        <outlet property="pwTF" destination="Y4Z-6c-VXy" id="bHx-6M-NpB"/>
                         <outlet property="resultTV" destination="LJA-Cy-aQe" id="7tr-GN-KsM"/>
                     </connections>
                 </viewController>

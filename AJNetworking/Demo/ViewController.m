@@ -7,15 +7,18 @@
 //
 
 #import "ViewController.h"
-#import "RequestBeanPhoneNum.h"
-#import "ResponseBeanPhoneNum.h"
 #import "AJNetworkManager.h"
+#import "RequestBeanDemoLogin.h"
+#import "ResponseBeanDemoLogin.h"
+#import "MJExtension.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *phoneTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *accountTF;
+@property (weak, nonatomic) IBOutlet UITextField *pwTF;
 @property (weak, nonatomic) IBOutlet UITextView *resultTV;
 
-- (IBAction)checkBtnClick:(id)sender;
+- (IBAction)loginBtnClick:(UIButton *)sender;
 
 @end
 
@@ -23,55 +26,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
-
-- (IBAction)checkBtnClick:(id)sender
+- (IBAction)loginBtnClick:(UIButton *)sender
 {
-    NSString *phoneStr = self.phoneTF.text;
+    [self.view endEditing:YES];
     
-    RequestBeanPhoneNum *requestBean = [[RequestBeanPhoneNum alloc] init];
-    requestBean.phone = phoneStr;
+    RequestBeanDemoLogin *requestBean = [[RequestBeanDemoLogin alloc] init];
+    requestBean.account = self.accountTF.text;
+    requestBean.pw = self.pwTF.text;
     
-    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
-        
-        if (success) {
-            
-            AJLog(@"==============读取缓存=============");
-            
-            ResponseBeanPhoneNum *response = responseBean;
-            
-            [self handleReponse:response];
-            
-        }else{
-            [self readFromNetwork];
-        }
-    }];
-}
-
-- (void)readFromNetwork
-{
-    NSString *phoneStr = self.phoneTF.text;
-    
-    RequestBeanPhoneNum *requestBean = [[RequestBeanPhoneNum alloc] init];
-    requestBean.phone = phoneStr;
+    //test
+    requestBean.name = @"aboo";
     
     [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
-        
-        if (success) {
-            ResponseBeanPhoneNum *response = responseBean;
-            
-            [self handleReponse:response];
-        }
-    }];
-}
-
-- (void)handleReponse:(ResponseBeanPhoneNum *)response
-{
-    NSString *resultStr = [NSString stringWithFormat:@"%@ \n%@ \n%@ \n%@ \n%@ \n%@", response.retData.phone, response.retData.prefix, response.retData.supplier, response.retData.province, response.retData.city, response.retData.suit];
     
-    self.resultTV.text = [NSString stringWithFormat:@"%@", resultStr];
+            if (success) {
+                
+                // 返回结果处理
+                ResponseBeanDemoLogin *response = responseBean;
+            }
+    }];
 }
 
 @end

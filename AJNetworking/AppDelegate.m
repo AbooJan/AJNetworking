@@ -23,7 +23,7 @@
     
     // 网络配置
     AJNetworkConfig *networkConfig = [AJNetworkConfig shareInstance];
-    networkConfig.hostUrl = @"apis.baidu.com";
+    networkConfig.hostUrl = @"localhost:3000";
 //    networkConfig.hostUrl = @"192.168.1.10:80";
     networkConfig.httpsCertificatePassword = CFSTR("123456789");
     networkConfig.httpsCertificatePath = [[NSBundle mainBundle] pathForResource:@"client_test_local" ofType:@"p12"];
