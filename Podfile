@@ -1,4 +1,9 @@
 platform :ios, "7.0"
-pod 'AFNetworking'
-pod 'MJExtension'
-pod 'SPTPersistentCache'
+
+target "AJNetworking" do
+
+  pod "AFNetworking"
+  pod "MJExtension"
+  pod "SPTPersistentCache"
+  
+end
