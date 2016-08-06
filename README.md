@@ -5,6 +5,8 @@
 
 AFNetworking 3.0 版本的封装，结合MJExtension框架处理JSON序列化问题
 
+项目中使用的网络请求服务器代码使用 `Node.js` 编写：[NetworkTest](https://github.com/AbooJan/NetworkTest)
+
 ![](./Structure.png)
 
 
