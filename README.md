@@ -283,6 +283,16 @@ pod 'AJNetworking'
 
  --
  
+ 
+#### 七、网络状态
+通过类 `AJNetworkStatus` 获取当前网络状态，框架本身在网络配置完之后即开启网络监测。
+
+```
+- (AJNetworkReachabilityStatus)currentStatus;
+- (BOOL)canReachable;
+```
+ 
+ 
 ## 感谢
  
    依赖框架   | 

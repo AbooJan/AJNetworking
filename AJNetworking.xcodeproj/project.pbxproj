@@ -27,6 +27,7 @@
 		CC1601D11C9D01AA00954797 /* ResponseBeanBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601CF1C9D01AA00954797 /* ResponseBeanBase.m */; };
 		CC1601D71C9D01C200954797 /* AJNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601D31C9D01C200954797 /* AJNetworkConfig.m */; };
 		CC1601D81C9D01C200954797 /* AJNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601D61C9D01C200954797 /* AJNetworkManager.m */; };
+		CC5C6D5A1D5B707E00FC3BA2 /* AJNetworkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5C6D591D5B707E00FC3BA2 /* AJNetworkStatus.m */; };
 		CC9D0DBA1C9E985E00607B5C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9D0DB91C9E985E00607B5C /* ViewController.m */; };
 		DB33B43A1CA63BF100DB1D05 /* RequestBeanLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB33B4391CA63BF100DB1D05 /* RequestBeanLogin.m */; };
 		DB33B43D1CA63C1000DB1D05 /* ResponseBeanLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB33B43C1CA63C1000DB1D05 /* ResponseBeanLogin.m */; };
@@ -95,6 +96,8 @@
 		CC1601D41C9D01C200954797 /* AJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworking.h; sourceTree = "<group>"; };
 		CC1601D51C9D01C200954797 /* AJNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworkManager.h; sourceTree = "<group>"; };
 		CC1601D61C9D01C200954797 /* AJNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNetworkManager.m; sourceTree = "<group>"; };
+		CC5C6D581D5B707E00FC3BA2 /* AJNetworkStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworkStatus.h; sourceTree = "<group>"; };
+		CC5C6D591D5B707E00FC3BA2 /* AJNetworkStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNetworkStatus.m; sourceTree = "<group>"; };
 		CC9D0DB81C9E985E00607B5C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CC9D0DB91C9E985E00607B5C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D44D4130CD63692BF33AB2F0 /* Pods-AJNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AJNetworking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AJNetworking/Pods-AJNetworking.debug.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				DB388E991CA90F6100702CE0 /* AJNetworkLog.m */,
 				DBE5DDA81CB4E9C8006127E9 /* AJCacheOptions.h */,
 				DBE5DDA91CB4E9C8006127E9 /* AJCacheOptions.m */,
+				CC5C6D581D5B707E00FC3BA2 /* AJNetworkStatus.h */,
+				CC5C6D591D5B707E00FC3BA2 /* AJNetworkStatus.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				DB388E971CA9077E00702CE0 /* LoginViewController.m in Sources */,
 				CC1601B81C9D007400954797 /* AppDelegate.m in Sources */,
 				DB606EEC1CAA695500BD6272 /* RequestBeanUploadAvatar.m in Sources */,
+				CC5C6D5A1D5B707E00FC3BA2 /* AJNetworkStatus.m in Sources */,
 				CC0EA3561D56108E00254A00 /* ResponseBeanDemoRegister.m in Sources */,
 				CC1601D01C9D01AA00954797 /* RequestBeanBase.m in Sources */,
 				CC0EA3411D55ECE500254A00 /* RequestBeanDemoBase.m in Sources */,

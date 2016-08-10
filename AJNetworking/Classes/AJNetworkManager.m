@@ -11,6 +11,7 @@
 #import "AJNetworkLog.h"
 #import <SPTPersistentCache/SPTPersistentCache.h>
 #import "MD5Util.h"
+#import "AJNetworkStatus.h"
 
 
 @implementation AJNetworkManager
@@ -108,6 +109,15 @@
 
 + (void)requestWithBean:(__kindof RequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack
 {
+    // 网络检测
+    if (![[AJNetworkStatus shareInstance] canReachable]) {
+        
+        callBack(nil,NO);
+
+        return;
+    }
+    
+    // 发起请求
     NSString *requestUrl = [requestBean requestUrl];
     NSDictionary *params = [requestBean mj_keyValues];
     

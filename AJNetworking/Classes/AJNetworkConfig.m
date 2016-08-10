@@ -7,6 +7,7 @@
 //
 
 #import "AJNetworkConfig.h"
+#import "AJNetworkStatus.h"
 #import <SPTPersistentCache/SPTPersistentCache.h>
 
 #define kBundleID [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
@@ -25,6 +26,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[AJNetworkConfig alloc] init];
+        
+        // 开启网络状态监听
+        [AJNetworkStatus shareInstance];
     });
     
     return instance;

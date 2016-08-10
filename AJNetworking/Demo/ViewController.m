@@ -58,6 +58,13 @@
                 
                 // 返回结果处理
                 ResponseBeanDemoLogin *response = responseBean;
+            }else{
+                
+                if (responseBean) {
+                    AJLog(@"请求错误：%ld -- %@", responseBean.statusCode, responseBean.responseMessage);
+                }else{
+                    AJLog(@"网络错误，稍后重试");
+                }
             }
     }];
 }
