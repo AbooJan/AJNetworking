@@ -229,9 +229,9 @@ pod 'AJNetworking'
 4. 发起请求的时候可以先读取缓存，当缓存不存在或已失效的时候才真正发起请求：
 
  ```objective-c
-    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
-        if (success) {
+        if (!err) {
             
             // 读取缓存
             [self handleReponse:response];
