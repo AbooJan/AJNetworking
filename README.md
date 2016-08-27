@@ -61,18 +61,17 @@ pod 'AJNetworking'
 5. 发起请求由类 `AJNetworkManager` 管理，里面负责网络的请求和返回数据的处理，示例：
  
  	```objective-c
- 	// 手机号码归属地查询
- 	RequestBeanPhoneNum *requestBean = [[RequestBeanPhoneNum alloc] init];
-    requestBean.phone = phoneStr;
+ 	RequestBeanDemoRegister *requestBean = [RequestBeanDemoRegister new];
+    requestBean.userName = self.userNameTF.text;
+    requestBean.pw = self.pwTF1.text;
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
-        if (success) {
-            ResponseBeanPhoneNum *response = responseBean;
+        if (!err) {
             
-            NSString *resultStr = [NSString stringWithFormat:@"%@ \n%@ \n%@ \n%@ \n%@ \n%@", response.retData.phone, response.retData.prefix, response.retData.supplier, response.retData.province, response.retData.city, response.retData.suit];
-
-            self.resultTV.text = [NSString stringWithFormat:@"%@", resultStr];
+            // 结果处理
+            ResponseBeanDemoRegister *response = responseBean;
+            AJLog(@"userId:%@", response.data.userId);
         }
     }];
  	```
@@ -117,8 +116,9 @@ pod 'AJNetworking'
     requestBean.compid = @"1702487";
     requestBean.avatar = [UIImage imageNamed:@"testImg"];
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
-        if (success) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
             ResponseBeanUploadAvatar *response = responseBean;
         }
     }];
@@ -184,7 +184,7 @@ pod 'AJNetworking'
  
  --
 
-#### 五、读取缓存
+#### 五、缓存
 
 1. 读取已缓存数据跟发起普通请求类似，使用 `AJNetworkManager` 的以下方法：
 
@@ -243,6 +243,24 @@ pod 'AJNetworking'
         }
     }];
  ```
+ 
+5. 目前已把缓存和网络请求结合在了一起，如果设置的是短期缓存，在有效期内不会发起真正的网络请求；如果是长期有效缓存，则会先读取缓存，然后发起网络请求。使用详情可以参考Demo 
+
+ ```objective-c
+ /**
+ *  @author aboojan
+ *
+ *  @brief 发起网络请求，有缓存
+ *
+ *  @param requestBean   网络请求参数模式Bean
+ *  @param cacheCallBack 缓存读取回调
+ *  @param httpCallBack  网络请求结果回调
+ */
++ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean
+          cacheCallBack:(AJRequestCallBack _Nonnull)cacheCallBack
+           httpCallBack:(AJRequestCallBack _Nonnull)httpCallBack;
+ ```
+
 
  --
  
