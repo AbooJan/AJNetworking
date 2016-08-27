@@ -14,6 +14,8 @@
 #import "ResponseBeanDemoRegister.h"
 #import "RequestBeanDemoNews.h"
 #import "ResponseBeanDemoNews.h"
+#import "RequestBeanDemoFilm.h"
+#import "ResponseBeanDemoFilm.h"
 #import "MJExtension.h"
 
 @interface ViewController ()
@@ -31,6 +33,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *userIdTF;
 @property (weak, nonatomic) IBOutlet UITextField *dateTimeTF;
 - (IBAction)readNewsBtnClick:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *statusSegment;
+- (IBAction)filmBtnClick:(id)sender;
+
 
 @end
 
@@ -136,6 +143,40 @@
 {
     for (News *page in news.data) {
         AJLog(@"%@ -- %@ -- %@", page.title, page.content, page.author);
+    }
+}
+
+#pragma mark 长期缓存示例
+- (IBAction)filmBtnClick:(id)sender
+{
+    NSInteger testCode = self.statusSegment.selectedSegmentIndex;
+    
+    RequestBeanDemoFilm *reqeustBean = [[RequestBeanDemoFilm alloc] init];
+    reqeustBean.testCode = testCode;
+    
+    [AJNetworkManager requestWithBean:reqeustBean cacheCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
+            
+            AJLog(@"---来自缓存---");
+            [self handleFilm:responseBean];
+        }
+        
+    } httpCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
+            
+            AJLog(@"---来自网络---");
+            [self handleFilm:responseBean];
+        }
+        
+    }];
+}
+
+- (void)handleFilm:(ResponseBeanDemoFilm *)films
+{
+    for (Film *film in films.data) {
+        AJLog(@"%@ -- %@", film.name, film.type);
     }
 }
 

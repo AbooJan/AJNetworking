@@ -32,7 +32,7 @@
     AJCacheOptions *cacheOptions = [AJCacheOptions new];
     cacheOptions.cachePath = [documentsPath stringByAppendingPathComponent:@"aj_network_cache"];
     cacheOptions.globalCacheExpirationSecond = 60;
-    cacheOptions.globalCacheGCSecond = 2 * 60;
+    cacheOptions.globalCacheGCSecond = 10 * 60;
     networkConfig.cacheOptions = cacheOptions;
 
     return YES;

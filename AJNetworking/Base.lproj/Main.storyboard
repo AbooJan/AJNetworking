@@ -107,19 +107,45 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YkR-rd-Gtd">
+                                <rect key="frame" x="20" y="281" width="80" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="hoc-GE-c9N"/>
+                                    <constraint firstAttribute="height" constant="28" id="xOt-wi-Xxz"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="0"/>
+                                    <segment title="1"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8B-J0-4pC">
+                                <rect key="frame" x="108" y="281" width="80" height="28"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="aNj-cw-eeS"/>
+                                    <constraint firstAttribute="width" constant="80" id="dLE-Lq-WF8"/>
+                                </constraints>
+                                <state key="normal" title="电影列表"/>
+                                <connections>
+                                    <action selector="filmBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aLz-Cg-DA6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eeb-pR-GHE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="1EJ-f3-tuw"/>
+                            <constraint firstItem="B8B-J0-4pC" firstAttribute="top" secondItem="d62-G1-HTH" secondAttribute="bottom" constant="20" id="3E0-t3-jaD"/>
                             <constraint firstItem="w8i-eS-tUM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6rd-hK-s4D"/>
                             <constraint firstAttribute="trailing" secondItem="BRX-kF-LLg" secondAttribute="trailing" constant="16" id="AMC-Q8-EnJ"/>
                             <constraint firstItem="JIz-WQ-FaZ" firstAttribute="top" secondItem="Y4Z-6c-VXy" secondAttribute="bottom" constant="16" id="F3C-SQ-pQE"/>
                             <constraint firstItem="BRX-kF-LLg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="FL8-mW-AY6"/>
                             <constraint firstItem="ME7-sG-Kuf" firstAttribute="leading" secondItem="JIz-WQ-FaZ" secondAttribute="trailing" constant="8" id="HFZ-9J-oZK"/>
                             <constraint firstItem="raa-sg-LPu" firstAttribute="top" secondItem="fTR-jV-YJO" secondAttribute="bottom" constant="16" id="NzQ-pP-XXI"/>
+                            <constraint firstItem="YkR-rd-Gtd" firstAttribute="top" secondItem="d62-G1-HTH" secondAttribute="bottom" constant="20" id="Q8c-I8-sgY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="w8i-eS-tUM" secondAttribute="bottom" constant="16" id="TPL-HU-e7w"/>
                             <constraint firstItem="pja-5S-wDY" firstAttribute="leading" secondItem="d62-G1-HTH" secondAttribute="trailing" constant="8" id="Ugs-o1-7dj"/>
                             <constraint firstItem="pja-5S-wDY" firstAttribute="leading" secondItem="raa-sg-LPu" secondAttribute="trailing" constant="8" id="VTb-Hr-lX8"/>
+                            <constraint firstItem="B8B-J0-4pC" firstAttribute="leading" secondItem="YkR-rd-Gtd" secondAttribute="trailing" constant="8" id="Xwp-fr-9Gj"/>
                             <constraint firstItem="Y4Z-6c-VXy" firstAttribute="top" secondItem="eeb-pR-GHE" secondAttribute="bottom" constant="4" id="YCK-Bg-DP3"/>
                             <constraint firstAttribute="trailing" secondItem="pja-5S-wDY" secondAttribute="trailing" constant="16" id="aeu-sP-4Mo"/>
                             <constraint firstItem="d62-G1-HTH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="fGO-Mz-WUE"/>
@@ -127,6 +153,7 @@
                             <constraint firstItem="raa-sg-LPu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="g3i-eu-6aA"/>
                             <constraint firstItem="Y4Z-6c-VXy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="lmG-rn-mMS"/>
                             <constraint firstItem="pja-5S-wDY" firstAttribute="top" secondItem="ME7-sG-Kuf" secondAttribute="bottom" constant="16" id="pC8-TB-BwH"/>
+                            <constraint firstItem="YkR-rd-Gtd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="qPs-S2-hQu"/>
                             <constraint firstItem="d62-G1-HTH" firstAttribute="top" secondItem="raa-sg-LPu" secondAttribute="bottom" constant="4" id="qTb-pe-wac"/>
                             <constraint firstItem="JIz-WQ-FaZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="tBs-Sm-hRw"/>
                             <constraint firstItem="ME7-sG-Kuf" firstAttribute="leading" secondItem="fTR-jV-YJO" secondAttribute="trailing" constant="8" id="u9i-pf-pfo"/>
@@ -143,6 +170,7 @@
                         <outlet property="dateTimeTF" destination="d62-G1-HTH" id="KeE-gU-BEN"/>
                         <outlet property="pwTF" destination="Y4Z-6c-VXy" id="bHx-6M-NpB"/>
                         <outlet property="pwTF1" destination="fTR-jV-YJO" id="dV5-xk-e0S"/>
+                        <outlet property="statusSegment" destination="YkR-rd-Gtd" id="DeR-eB-7t6"/>
                         <outlet property="userIdTF" destination="raa-sg-LPu" id="nhf-aL-nac"/>
                         <outlet property="userNameTF" destination="JIz-WQ-FaZ" id="Pee-PT-Xcb"/>
                     </connections>
