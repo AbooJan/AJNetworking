@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "AJCacheOptions.h"
+#import <SPTPersistentCache/SPTPersistentCache.h>
 
 #ifdef DEBUG
 #   define AJLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
@@ -36,8 +37,6 @@ typedef NS_ENUM(NSInteger, HTTP_SCHEME)
     HTTP_SCHEME_HTTP,
     HTTP_SCHEME_HTTPS
 };
-
-@class SPTPersistentCache;
 
 @interface AJNetworkConfig : NSObject
 

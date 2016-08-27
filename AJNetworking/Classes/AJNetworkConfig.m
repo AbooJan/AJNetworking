@@ -8,7 +8,6 @@
 
 #import "AJNetworkConfig.h"
 #import "AJNetworkStatus.h"
-#import <SPTPersistentCache/SPTPersistentCache.h>
 
 #define kBundleID [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
 
