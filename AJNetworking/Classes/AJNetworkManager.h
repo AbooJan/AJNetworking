@@ -11,9 +11,18 @@
 #import "RequestBeanBase.h"
 #import "ResponseBeanBase.h"
 #import "RequestBeanDownloadTaskBase.h"
+#import "AJError.h"
 
+/**
+ *  @author aboojan
+ *
+ *  @brief 结果回调
+ *
+ *  @param responseBean 数据Bean，可能是缓存或网络数据
+ *  @param err          错误，如果为nil，回调成功，否则失败
+ */
+typedef void(^AJRequestCallBack)(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err);
 
-typedef void(^AJRequestCallBack)(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success);
 typedef void(^AJDownloadProgressCallBack)(int64_t totalUnitCount, int64_t completedUnitCount, double progressRate);
 typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError * _Nullable error);
 
@@ -23,12 +32,26 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
 /**
  *  @author aboojan
  *
- *  @brief 发请请求
+ *  @brief 发请网络请求，没有缓存
  *
- *  @param requestBean 请求参数模型Bean
- *  @param callBack    请求结果回调
+ *  @param requestBean 网络请求参数模型Bean
+ *  @param callBack    网络请求结果回调
  */
-+ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack;
++ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean
+               callBack:(AJRequestCallBack _Nonnull)callBack;
+
+/**
+ *  @author aboojan
+ *
+ *  @brief 发起网络请求，有缓存
+ *
+ *  @param requestBean   网络请求参数模式Bean
+ *  @param cacheCallBack 缓存读取回调
+ *  @param httpCallBack  网络请求结果回调
+ */
++ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean
+          cacheCallBack:(AJRequestCallBack _Nonnull)cacheCallBack
+           httpCallBack:(AJRequestCallBack _Nonnull)httpCallBack;
 
 
 /**

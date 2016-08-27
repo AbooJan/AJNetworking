@@ -55,12 +55,13 @@
     requestBean.phone = [TripleDESEncrypt tripleDES:accountStr encryptOrDecrypt:kCCEncrypt];
     requestBean.pwd = [TripleDESEncrypt tripleDES:pwStr encryptOrDecrypt:kCCEncrypt];
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
-        if (success) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
             ResponseBeanLogin *response = responseBean;
             AJLog(@"#: %@", response.rawData);
-//            self.resultTV.text = [NSString stringWithFormat:@"%@", [response description]];
         }
+        
     }];
 }
 
@@ -69,12 +70,12 @@
     // https 测试
     
     RequestBeanAlipayConfig *requestBean = [[RequestBeanAlipayConfig alloc] init];
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
-        if (success) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
             ResponseBeanAlipayConfig *response = responseBean;
             AlipayConfigBean *configBean = response.obj;
             
-//            self.resultTV.text = [NSString stringWithFormat:@"%@", [configBean description]];
         }
     }];
 }
@@ -85,11 +86,10 @@
     requestBean.compid = @"1702487";
     requestBean.avatar = [UIImage imageNamed:@"testImg"];
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
-        if (success) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
             ResponseBeanUploadAvatar *response = responseBean;
-            
-            
         }
     }];
 }

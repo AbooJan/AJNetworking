@@ -41,6 +41,7 @@
     
 }
 
+#pragma mark GET请求示例
 - (IBAction)loginBtnClick:(UIButton *)sender
 {
     [self.view endEditing:YES];
@@ -52,23 +53,26 @@
     //test
     requestBean.name = @"aboo";
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase *responseBean, BOOL success) {
-    
-            if (success) {
-                
-                // 返回结果处理
-                ResponseBeanDemoLogin *response = responseBean;
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
+            
+            // 返回结果处理
+            ResponseBeanDemoLogin *response = responseBean;
+            AJLog(@"user: %@", response.data);
+            
+        }else{
+            
+            if (responseBean) {
+                AJLog(@"请求错误：%ld -- %@", responseBean.statusCode, responseBean.responseMessage);
             }else{
-                
-                if (responseBean) {
-                    AJLog(@"请求错误：%ld -- %@", responseBean.statusCode, responseBean.responseMessage);
-                }else{
-                    AJLog(@"网络错误，稍后重试");
-                }
+                AJLog(@"网络错误，稍后重试");
             }
+        }
     }];
 }
 
+#pragma mark POST请求示例
 - (IBAction)registerBtnClick:(id)sender
 {
     [self.view endEditing:YES];
@@ -77,18 +81,19 @@
     requestBean.userName = self.userNameTF.text;
     requestBean.pw = self.pwTF1.text;
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
-        if (success) {
+        if (!err) {
             
             // 结果处理
-            ResponseBeanDemoRegister *responseBean = responseBean;
+            ResponseBeanDemoRegister *response = responseBean;
+            AJLog(@"userId:%@", response.data.userId);
         }
-        
     }];
     
-    
 }
+
+#pragma mark 短期缓存示例
 - (IBAction)readNewsBtnClick:(id)sender
 {
     [self.view endEditing:YES];
@@ -97,45 +102,41 @@
     requestBean.userId = self.userIdTF.text;
     requestBean.dateTime = self.dateTimeTF.text;
     
-    // 1. 网络检测
-    
-    // 2. 缓存读取
-    
-    // 3. 网络请求
-    
-    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
+    [AJNetworkManager requestWithBean:requestBean cacheCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
-        if (success) {
+        if (!err) {
             
-            // 读取缓存结果处理
-            AJLog(@"#####读缓存#####");
-            
-            ResponseBeanDemoNews *response = responseBean;
-            for (News *page in response.data) {
-                AJLog(@"%@ -- %@ -- %@", page.title, page.content, page.author);
-            }
+            // 读取缓存
+            AJLog(@"###来自缓存###");
+            [self handleNews:responseBean];
             
         }else{
+            // 读取缓存失败
+            AJLog(@"%@", [err description]);
+        }
+        
+    } httpCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        if (!err) {
             
-            // 发起网络请求
-            [self sendRequest:requestBean];
+            // 网络请求成功
+            AJLog(@"###来自网络###");
+            [self handleNews:responseBean];
+            
+        }else{
+            // 网络请求失败
+            AJLog(@"%@", [err description]);
         }
         
     }];
     
 }
 
-- (void)sendRequest:(RequestBeanDemoNews *)requestBean
+- (void)handleNews:(ResponseBeanDemoNews *)news
 {
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, BOOL success) {
-        
-        if (success) {
-            
-            // 结果处理
-            ResponseBeanDemoNews *response = responseBean;
-            
-        }
-    }];
+    for (News *page in news.data) {
+        AJLog(@"%@ -- %@ -- %@", page.title, page.content, page.author);
+    }
 }
 
 @end

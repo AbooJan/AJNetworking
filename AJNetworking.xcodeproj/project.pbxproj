@@ -18,6 +18,7 @@
 		CC0EA3561D56108E00254A00 /* ResponseBeanDemoRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3551D56108E00254A00 /* ResponseBeanDemoRegister.m */; };
 		CC0EA3591D563A5600254A00 /* RequestBeanDemoNews.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3581D563A5600254A00 /* RequestBeanDemoNews.m */; };
 		CC0EA35C1D563A7E00254A00 /* ResponseBeanDemoNews.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA35B1D563A7E00254A00 /* ResponseBeanDemoNews.m */; };
+		CC1114B11D6DDCF0009A80DB /* AJError.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1114B01D6DDCF0009A80DB /* AJError.m */; };
 		CC1601B51C9D007400954797 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601B41C9D007400954797 /* main.m */; };
 		CC1601B81C9D007400954797 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601B71C9D007400954797 /* AppDelegate.m */; };
 		CC1601BE1C9D007400954797 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1601BC1C9D007400954797 /* Main.storyboard */; };
@@ -79,6 +80,8 @@
 		CC0EA3581D563A5600254A00 /* RequestBeanDemoNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDemoNews.m; sourceTree = "<group>"; };
 		CC0EA35A1D563A7E00254A00 /* ResponseBeanDemoNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanDemoNews.h; sourceTree = "<group>"; };
 		CC0EA35B1D563A7E00254A00 /* ResponseBeanDemoNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanDemoNews.m; sourceTree = "<group>"; };
+		CC1114AF1D6DDCF0009A80DB /* AJError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJError.h; sourceTree = "<group>"; };
+		CC1114B01D6DDCF0009A80DB /* AJError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJError.m; sourceTree = "<group>"; };
 		CC1601B01C9D007400954797 /* AJNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AJNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC1601B41C9D007400954797 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CC1601B61C9D007400954797 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				DBE5DDA91CB4E9C8006127E9 /* AJCacheOptions.m */,
 				CC5C6D581D5B707E00FC3BA2 /* AJNetworkStatus.h */,
 				CC5C6D591D5B707E00FC3BA2 /* AJNetworkStatus.m */,
+				CC1114AF1D6DDCF0009A80DB /* AJError.h */,
+				CC1114B01D6DDCF0009A80DB /* AJError.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -392,12 +397,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC1601C71C9D007400954797 /* Build configuration list for PBXNativeTarget "AJNetworking" */;
 			buildPhases = (
-				0B7CAD6DAF74E8D7370A21BE /* 📦 Check Pods Manifest.lock */,
+				0B7CAD6DAF74E8D7370A21BE /* [CP] Check Pods Manifest.lock */,
 				CC1601AC1C9D007400954797 /* Sources */,
 				CC1601AD1C9D007400954797 /* Frameworks */,
 				CC1601AE1C9D007400954797 /* Resources */,
-				FF76871A84A89471345175A2 /* 📦 Embed Pods Frameworks */,
-				874B40777B50CBF6458FAC03 /* 📦 Copy Pods Resources */,
+				FF76871A84A89471345175A2 /* [CP] Embed Pods Frameworks */,
+				874B40777B50CBF6458FAC03 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -456,14 +461,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B7CAD6DAF74E8D7370A21BE /* 📦 Check Pods Manifest.lock */ = {
+		0B7CAD6DAF74E8D7370A21BE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,14 +476,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		874B40777B50CBF6458FAC03 /* 📦 Copy Pods Resources */ = {
+		874B40777B50CBF6458FAC03 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,14 +491,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AJNetworking/Pods-AJNetworking-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF76871A84A89471345175A2 /* 📦 Embed Pods Frameworks */ = {
+		FF76871A84A89471345175A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0EA3501D55F62400254A00 /* User.m in Sources */,
+				CC1114B11D6DDCF0009A80DB /* AJError.m in Sources */,
 				DB33B4461CA65F8300DB1D05 /* TripleDESEncrypt.m in Sources */,
 				DB7B4A491CB3BC3600094D3B /* MD5Util.m in Sources */,
 				DB388EA01CA9466E00702CE0 /* RequestBeanAlipayConfig.m in Sources */,

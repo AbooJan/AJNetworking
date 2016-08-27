@@ -112,7 +112,8 @@
     // 网络检测
     if (![[AJNetworkStatus shareInstance] canReachable]) {
         
-        callBack(nil,NO);
+        AJError *err = [[AJError alloc] initWithCode:AJErrorCodeNoNetwork message:@"network can not reach"];
+        callBack(nil, err);
 
         return;
     }
@@ -266,6 +267,39 @@
     }
 }
 
++ (void)requestWithBean:(__kindof RequestBeanBase *)requestBean cacheCallBack:(AJRequestCallBack)cacheCallBack httpCallBack:(AJRequestCallBack)httpCallBack
+{
+    __weak __typeof__(self) weakSelf = self;
+    [self cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        
+        __strong __typeof__(weakSelf) strongSelf = weakSelf;
+        
+        // 缓存结果回调
+        cacheCallBack(responseBean, err);
+        
+        if (err != nil) {
+            
+            // 没有缓存，发起网络请求
+            [strongSelf requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+                httpCallBack(responseBean, err);
+            }];
+            
+        }else{
+        
+            if ([requestBean cacheLiveSecond] == 0) {
+                
+                // 缓存长期有效，需要发起网络请求
+                [strongSelf requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+                    httpCallBack(responseBean, err);
+                }];
+                
+            }else{
+                // 缓存短期有效，无需网络请求
+            }
+        }
+    }];
+}
+
 + (NSURLSessionDownloadTask *)downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack
 {
     // 如果已存在，则不下载
@@ -327,16 +361,20 @@
                 ResponseBeanBase *responseBean = [responseClass mj_objectWithKeyValues:jsonDic];
                 responseBean.rawData = jsonDic;
                 
-                callBack(responseBean, YES);
+                callBack(responseBean, nil);
                 
             }else{
-                callBack(nil, NO);
+                
+                AJError *err = [[AJError alloc] initWithCode:AJErrorCodeCacheInvalid message:@"cache invalid"];
+                callBack(nil, err);
             }
             
         } onQueue:dispatch_get_main_queue()];
         
     }else{
-        callBack(nil, NO);
+        
+        AJError *err = [[AJError alloc] initWithCode:AJErrorCodeNoCache message:@"no cache"];
+        callBack(nil, err);
     }
 }
 
@@ -349,12 +387,14 @@
 
     //TODO: HEAD 请求结果处理有待补充
     if ([requestBean httpMethod]== HTTP_METHOD_HEAD) {
-        callBack(nil, NO);
+        callBack(nil, [AJError defaultError]);
         return;
     }
     
     if (!responseObject) {
-        callBack(nil, NO);
+        
+        AJError *err = [[AJError alloc] initWithCode:AJErrorCodeNoResponse message:@"no response data"];
+        callBack(nil, err);
         [AJNetworkLog logWithContent:@"请求失败：没有数据返回!"];
         return;
     }
@@ -371,7 +411,7 @@
         }
         
         // 成功
-        callBack(responseBean, YES);
+        callBack(responseBean, nil);
         
     }else{
         // 失败
@@ -383,7 +423,8 @@
 
         [AJNetworkLog logWithContent:[NSString stringWithFormat:@"请求失败：%@", errMsg]];
         
-        callBack(responseBean, NO);
+        AJError *err = [[AJError alloc] initWithCode:[responseBean statusCode] message:errMsg];
+        callBack(responseBean, err);
     }
 }
 
@@ -391,7 +432,8 @@
 {
     [AJNetworkLog logWithContent:[NSString stringWithFormat:@"请求失败：%@", [error description]]];
     
-    callBack(nil, NO);
+    AJError *err = [[AJError alloc] initWithCode:error.code message:error.description];
+    callBack(nil, err);
 }
 
 
