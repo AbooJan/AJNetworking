@@ -6,10 +6,9 @@
 //  Copyright © 2016年 Joiway. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "AFNetworking.h"
 #import "AJCacheOptions.h"
 #import <SPTPersistentCache/SPTPersistentCache.h>
+#import <AFNetworking/AFNetworking.h>
 
 #ifdef DEBUG
 #   define AJLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
