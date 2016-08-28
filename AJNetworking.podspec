@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "AJNetworking"
-  s.version      = "3.0.0"
+  s.version      = "3.0.1"
   s.summary      = "AJNetworking是对AFNetworking 3.x 版本的封装，内部集成缓存和JSON转化."
 
   s.description  = <<-DESC
