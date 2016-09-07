@@ -1,5 +1,5 @@
 //
-//  ResponseBeanBase.h
+//  AJResponseBeanBase.h
 //  AJNetworking
 //
 //  Created by 钟宝健 on 16/3/18.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ResponseBeanProtocol.h"
+#import "AJResponseBeanProtocol.h"
 #import "AJNetworkConfig.h"
 
-@interface ResponseBeanBase : NSObject<ResponseBeanProtocol>
+@interface AJResponseBeanBase : NSObject<AJResponseBeanProtocol>
 @property (nonatomic, strong) id rawData;
 @end

@@ -1,16 +1,16 @@
 //
-//  RequestBeanBase.m
+//  AJRequestBeanBase.m
 //  AJNetworking
 //
 //  Created by 钟宝健 on 16/3/18.
 //  Copyright © 2016年 Joiway. All rights reserved.
 //
 
-#import "RequestBeanBase.h"
+#import "AJRequestBeanBase.h"
 
 static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
 
-@implementation RequestBeanBase
+@implementation AJRequestBeanBase
 
 - (HTTP_SCHEME)httpScheme
 {

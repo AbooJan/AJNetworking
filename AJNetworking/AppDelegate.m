@@ -23,10 +23,10 @@
     
     // 网络配置
     AJNetworkConfig *networkConfig = [AJNetworkConfig shareInstance];
-    networkConfig.hostUrl = @"localhost:3000";
+    networkConfig.hostUrl = @"localhost:3030";
 //    networkConfig.hostUrl = @"192.168.1.10:80";
-    networkConfig.httpsCertificatePassword = CFSTR("123456789");
-    networkConfig.httpsCertificatePath = [[NSBundle mainBundle] pathForResource:@"client_test_local" ofType:@"p12"];
+    networkConfig.httpsCertificatePassword = CFSTR("666666");
+    networkConfig.httpsCertificatePath = [[NSBundle mainBundle] pathForResource:@"client" ofType:@"p12"];
     
     // 网络缓存配置
     AJCacheOptions *cacheOptions = [AJCacheOptions new];

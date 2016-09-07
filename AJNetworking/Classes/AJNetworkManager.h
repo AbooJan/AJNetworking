@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "AJNetworkConfig.h"
-#import "RequestBeanBase.h"
-#import "ResponseBeanBase.h"
-#import "RequestBeanDownloadTaskBase.h"
+#import "AJRequestBeanBase.h"
+#import "AJResponseBeanBase.h"
+#import "AJRequestBeanDownloadTaskBase.h"
 #import "AJError.h"
 
 /**
@@ -21,7 +21,7 @@
  *  @param responseBean 数据Bean，可能是缓存或网络数据
  *  @param err          错误，如果为nil，回调成功，否则失败
  */
-typedef void(^AJRequestCallBack)(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err);
+typedef void(^AJRequestCallBack)(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err);
 
 typedef void(^AJDownloadProgressCallBack)(int64_t totalUnitCount, int64_t completedUnitCount, double progressRate);
 typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError * _Nullable error);
@@ -37,7 +37,7 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
  *  @param requestBean 网络请求参数模型Bean
  *  @param callBack    网络请求结果回调
  */
-+ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean
++ (void)requestWithBean:(__kindof AJRequestBeanBase * _Nonnull)requestBean
                callBack:(AJRequestCallBack _Nonnull)callBack;
 
 /**
@@ -49,7 +49,7 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
  *  @param cacheCallBack 缓存读取回调
  *  @param httpCallBack  网络请求结果回调
  */
-+ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean
++ (void)requestWithBean:(__kindof AJRequestBeanBase * _Nonnull)requestBean
           cacheCallBack:(AJRequestCallBack _Nonnull)cacheCallBack
            httpCallBack:(AJRequestCallBack _Nonnull)httpCallBack;
 
@@ -65,7 +65,7 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
  *
  *  @return 当前下载任务线程
  */
-+ ( NSURLSessionDownloadTask * _Nullable )downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase * _Nonnull)requestBean progress:(AJDownloadProgressCallBack _Nullable )progressCallBack completion:(AJDownloadCompletionCallBack _Nullable)completionCallBack;
++ ( NSURLSessionDownloadTask * _Nullable )downloadTaskWithBean:(__kindof AJRequestBeanDownloadTaskBase * _Nonnull)requestBean progress:(AJDownloadProgressCallBack _Nullable )progressCallBack completion:(AJDownloadCompletionCallBack _Nullable)completionCallBack;
 
 /**
  *  @author aboojan
@@ -75,6 +75,6 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
  *  @param requestBean 请求Bean
  *  @param callBack    读取缓存回调
  */
-+ (void)cacheWithRequestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack;
++ (void)cacheWithRequestWithBean:(__kindof AJRequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack;
 
 @end

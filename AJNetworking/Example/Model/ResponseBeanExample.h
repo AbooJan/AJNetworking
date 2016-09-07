@@ -6,9 +6,9 @@
 //  Copyright © 2016年 aboojan. All rights reserved.
 //
 
-#import "ResponseBeanBase.h"
+#import "AJResponseBeanBase.h"
 
-@interface ResponseBeanExample : ResponseBeanBase <ResponseBeanProtocol>
+@interface ResponseBeanExample : AJResponseBeanBase <AJResponseBeanProtocol>
 ///提示语
 @property (nonatomic,strong) NSString *msg;
 ///状态值

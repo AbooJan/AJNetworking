@@ -1,14 +1,14 @@
 //
-//  ResponseBeanBase.m
+//  AJResponseBeanBase.m
 //  AJNetworking
 //
 //  Created by 钟宝健 on 16/3/18.
 //  Copyright © 2016年 Joiway. All rights reserved.
 //
 
-#import "ResponseBeanBase.h"
+#import "AJResponseBeanBase.h"
 
-@implementation ResponseBeanBase
+@implementation AJResponseBeanBase
 
 - (NSInteger)statusCode
 {

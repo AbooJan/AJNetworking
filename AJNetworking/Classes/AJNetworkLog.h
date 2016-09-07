@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RequestBeanBase.h"
-#import "ResponseBeanBase.h"
+#import "AJRequestBeanBase.h"
+#import "AJResponseBeanBase.h"
 
 @interface AJNetworkLog : NSObject
-+ (void)logWithRequestBean:(__kindof RequestBeanBase *)requestBean;
-+ (void)logWithRequestBean:(__kindof RequestBeanBase *)requestBean json:(id)responseJSON;
++ (void)logWithRequestBean:(__kindof AJRequestBeanBase *)requestBean;
++ (void)logWithRequestBean:(__kindof AJRequestBeanBase *)requestBean json:(id)responseJSON;
 + (void)logWithContent:(NSString *)logContent;
 @end

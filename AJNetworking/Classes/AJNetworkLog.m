@@ -25,7 +25,7 @@
     return postString;
 }
 
-+ (void)logWithRequestBean:(__kindof RequestBeanBase *)requestBean
++ (void)logWithRequestBean:(__kindof AJRequestBeanBase *)requestBean
 {
     NSString *hostStr = [requestBean apiHost];
     NSString *apiStr = [requestBean apiPath];
@@ -51,7 +51,7 @@
     AJLog(@"%@", logString);
 }
 
-+ (void)logWithRequestBean:(__kindof RequestBeanBase *)requestBean json:(id)responseJSON
++ (void)logWithRequestBean:(__kindof AJRequestBeanBase *)requestBean json:(id)responseJSON
 {
     NSMutableString *logString = [NSMutableString stringWithString:@"\n\n"];
     [logString appendFormat:@"==============================================================\n"];

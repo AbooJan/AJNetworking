@@ -6,8 +6,8 @@
 //  Copyright © 2016年 aboojan. All rights reserved.
 //
 
-#import "RequestBeanBase.h"
+#import "AJRequestBeanBase.h"
 
-@interface RequestBeanAlipayConfig : RequestBeanBase
+@interface RequestBeanAlipayConfig : AJRequestBeanBase
 @property (nonatomic,assign) NSInteger device;
 @end

@@ -1,5 +1,5 @@
 //
-//  RequestBeanProtocol.h
+//  AJRequestBeanProtocol.h
 //  AJNetworking
 //
 //  Created by 钟宝健 on 16/3/22.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AJNetworkConfig.h"
 
-@protocol RequestBeanProtocol <NSObject>
+@protocol AJRequestBeanProtocol <NSObject>
 
 /**
  *  @author aboojan

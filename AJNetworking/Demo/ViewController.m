@@ -60,7 +60,7 @@
     //test
     requestBean.name = @"aboo";
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             
@@ -88,7 +88,7 @@
     requestBean.userName = self.userNameTF.text;
     requestBean.pw = self.pwTF1.text;
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             
@@ -109,7 +109,7 @@
     requestBean.userId = self.userIdTF.text;
     requestBean.dateTime = self.dateTimeTF.text;
     
-    [AJNetworkManager requestWithBean:requestBean cacheCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean cacheCallBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             
@@ -122,7 +122,7 @@
             AJLog(@"%@", [err description]);
         }
         
-    } httpCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    } httpCallBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             
@@ -154,7 +154,7 @@
     RequestBeanDemoFilm *reqeustBean = [[RequestBeanDemoFilm alloc] init];
     reqeustBean.testCode = testCode;
     
-    [AJNetworkManager requestWithBean:reqeustBean cacheCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:reqeustBean cacheCallBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             
@@ -162,7 +162,7 @@
             [self handleFilm:responseBean];
         }
         
-    } httpCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    } httpCallBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             

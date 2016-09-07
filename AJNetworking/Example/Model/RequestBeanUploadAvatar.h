@@ -6,9 +6,9 @@
 //  Copyright © 2016年 aboojan. All rights reserved.
 //
 
-#import "RequestBeanBase.h"
+#import "AJRequestBeanBase.h"
 
-@interface RequestBeanUploadAvatar : RequestBeanBase
+@interface RequestBeanUploadAvatar : AJRequestBeanBase
 
 @property (nonatomic, copy) NSString *compid;
 

@@ -1,5 +1,5 @@
 //
-//  ResponseBeanProtocol.h
+//  AJResponseBeanProtocol.h
 //  AJNetworking
 //
 //  Created by 钟宝健 on 16/3/22.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ResponseBeanProtocol <NSObject>
+@protocol AJResponseBeanProtocol <NSObject>
 
 /**
  *  @author zhongbaojian

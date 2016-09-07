@@ -17,7 +17,7 @@
 #import "ResponseBeanUploadAvatar.h"
 #import "ResponseBeanDownloadFile.h"
 #import "RequestBeanDownloadFile.h"
-#import "RequestBeanDownloadTaskBase.h"
+#import "AJRequestBeanDownloadTaskBase.h"
 #import "MD5Util.h"
 
 
@@ -55,7 +55,7 @@
     requestBean.phone = [TripleDESEncrypt tripleDES:accountStr encryptOrDecrypt:kCCEncrypt];
     requestBean.pwd = [TripleDESEncrypt tripleDES:pwStr encryptOrDecrypt:kCCEncrypt];
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             ResponseBeanLogin *response = responseBean;
@@ -70,7 +70,7 @@
     // https 测试
     
     RequestBeanAlipayConfig *requestBean = [[RequestBeanAlipayConfig alloc] init];
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             ResponseBeanAlipayConfig *response = responseBean;
@@ -86,7 +86,7 @@
     requestBean.compid = @"1702487";
     requestBean.avatar = [UIImage imageNamed:@"testImg"];
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             ResponseBeanUploadAvatar *response = responseBean;
@@ -100,7 +100,7 @@
     NSString *fileUrl = @"http://125.89.74.165/10/m/m/j/a/mmjazvfnzomddhahggpebnswqfeutw/hc.yinyuetai.com/026601346FEFC3079F2136B68B0ECFD7.flv?sc=5927e705d66bde7b&br=717";
     NSString *fileMD5 = [MD5Util md5WithoutEncryptionFactor:fileUrl];
     
-    RequestBeanDownloadTaskBase *downloadRequest = [[RequestBeanDownloadTaskBase alloc] init];
+    AJRequestBeanDownloadTaskBase *downloadRequest = [[AJRequestBeanDownloadTaskBase alloc] init];
     
     downloadRequest.fileUrl = fileUrl;
 //    downloadRequest.saveFileName = [NSString stringWithFormat:@"%@.jpg", fileMD5];

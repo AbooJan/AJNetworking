@@ -6,9 +6,9 @@
 //  Copyright © 2016年 aboojan. All rights reserved.
 //
 
-#import "ResponseBeanBase.h"
+#import "AJResponseBeanBase.h"
 
-@interface ResponseBeanDemo : ResponseBeanBase <ResponseBeanProtocol>
+@interface ResponseBeanDemo : AJResponseBeanBase <AJResponseBeanProtocol>
 @property (nonatomic,strong) NSString *msg;
 @property (nonatomic,assign) NSInteger code;
 @end

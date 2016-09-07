@@ -86,7 +86,7 @@
 }
 
 #pragma mark 缓存Key
-+ (NSString *)cacheKeyWithRequestBean:(__kindof RequestBeanBase *) requestBean
++ (NSString *)cacheKeyWithRequestBean:(__kindof AJRequestBeanBase *) requestBean
 {
     NSString *cacheInfoStr = [NSString stringWithFormat:@"URL:%@ PARAMS:%@", [requestBean requestUrl], [requestBean mj_keyValues]];
     NSString *cacheKey = [MD5Util md5WithoutEncryptionFactor:cacheInfoStr];
@@ -95,7 +95,7 @@
 }
 
 
-+ (Class)responseClassWithRequestBean:(__kindof RequestBeanBase *) requestBean
++ (Class)responseClassWithRequestBean:(__kindof AJRequestBeanBase *) requestBean
 {
     const char *requestClassName = class_getName([requestBean class]);
     NSString *responseBeanNameStr = [[NSString stringWithUTF8String:requestClassName] stringByReplacingOccurrencesOfString:@"Request" withString:@"Response"];
@@ -107,7 +107,7 @@
 
 #pragma mark - <请求处理>
 
-+ (void)requestWithBean:(__kindof RequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack
++ (void)requestWithBean:(__kindof AJRequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack
 {
     // 网络检测
     if (![[AJNetworkStatus shareInstance] canReachable]) {
@@ -267,10 +267,10 @@
     }
 }
 
-+ (void)requestWithBean:(__kindof RequestBeanBase *)requestBean cacheCallBack:(AJRequestCallBack)cacheCallBack httpCallBack:(AJRequestCallBack)httpCallBack
++ (void)requestWithBean:(__kindof AJRequestBeanBase *)requestBean cacheCallBack:(AJRequestCallBack)cacheCallBack httpCallBack:(AJRequestCallBack)httpCallBack
 {
     __weak __typeof__(self) weakSelf = self;
-    [self cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [self cacheWithRequestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         __strong __typeof__(weakSelf) strongSelf = weakSelf;
         
@@ -280,7 +280,7 @@
         if (err != nil) {
             
             // 没有缓存，发起网络请求
-            [strongSelf requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+            [strongSelf requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
                 httpCallBack(responseBean, err);
             }];
             
@@ -289,7 +289,7 @@
             if ([requestBean cacheLiveSecond] == 0) {
                 
                 // 缓存长期有效，需要发起网络请求
-                [strongSelf requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+                [strongSelf requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
                     httpCallBack(responseBean, err);
                 }];
                 
@@ -300,7 +300,7 @@
     }];
 }
 
-+ (NSURLSessionDownloadTask *)downloadTaskWithBean:(__kindof RequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack
++ (NSURLSessionDownloadTask *)downloadTaskWithBean:(__kindof AJRequestBeanDownloadTaskBase *)requestBean progress:(AJDownloadProgressCallBack)progressCallBack completion:(AJDownloadCompletionCallBack)completionCallBack
 {
     // 如果已存在，则不下载
     NSString *saveFilePath = [requestBean.saveFilePath stringByAppendingPathComponent:requestBean.saveFileName];
@@ -341,7 +341,7 @@
     return downloadTask;
 }
 
-+ (void)cacheWithRequestWithBean:(__kindof RequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack
++ (void)cacheWithRequestWithBean:(__kindof AJRequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack
 {
     if ([requestBean cacheResponse]) {
         
@@ -358,7 +358,7 @@
                 NSDictionary *jsonDic = [cacheData mj_keyValues];
                 
                 Class responseClass = [strongSelf responseClassWithRequestBean:requestBean];
-                ResponseBeanBase *responseBean = [responseClass mj_objectWithKeyValues:jsonDic];
+                AJResponseBeanBase *responseBean = [responseClass mj_objectWithKeyValues:jsonDic];
                 responseBean.rawData = jsonDic;
                 
                 callBack(responseBean, nil);
@@ -380,7 +380,7 @@
 
 #pragma mark - <结果处理>
 
-+ (void)handleSuccessWithRequestBean:(__kindof RequestBeanBase *)requestBean response:(id  _Nullable) responseObject callBack:(AJRequestCallBack)callBack
++ (void)handleSuccessWithRequestBean:(__kindof AJRequestBeanBase *)requestBean response:(id  _Nullable) responseObject callBack:(AJRequestCallBack)callBack
 {
     [AJNetworkLog logWithRequestBean:requestBean json:responseObject];
     
@@ -400,7 +400,7 @@
     }
     
     Class responseClass = [self responseClassWithRequestBean:requestBean];
-    ResponseBeanBase *responseBean = [responseClass mj_objectWithKeyValues:responseObject];
+    AJResponseBeanBase *responseBean = [responseClass mj_objectWithKeyValues:responseObject];
     responseBean.rawData = responseObject;
     
     if ([responseBean checkSuccess]) {
@@ -437,7 +437,7 @@
 }
 
 
-+ (void)saveCacheWithRequestBean:(__kindof RequestBeanBase *) requestBean responseObj:(id  _Nullable) responseObject
++ (void)saveCacheWithRequestBean:(__kindof AJRequestBeanBase *) requestBean responseObj:(id  _Nullable) responseObject
 {
     SPTPersistentCache *httpCache = [[AJNetworkConfig shareInstance] globalHttpCache];
     

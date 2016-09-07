@@ -6,9 +6,9 @@
 //  Copyright © 2016年 aboojan. All rights reserved.
 //
 
-#import "RequestBeanBase.h"
+#import "AJRequestBeanBase.h"
 
-@interface RequestBeanLogin : RequestBeanBase
+@interface RequestBeanLogin : AJRequestBeanBase
 @property (nonatomic, copy) NSString *phone;
 @property (nonatomic, copy) NSString *pwd;
 @end

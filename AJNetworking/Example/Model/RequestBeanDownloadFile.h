@@ -6,9 +6,9 @@
 //  Copyright © 2016年 aboojan. All rights reserved.
 //
 
-#import "RequestBeanBase.h"
+#import "AJRequestBeanBase.h"
 
-@interface RequestBeanDownloadFile : RequestBeanBase
+@interface RequestBeanDownloadFile : AJRequestBeanBase
 @property (nonatomic, copy) NSString *compid;
 @property (nonatomic,strong) NSString *job_id;
 @property (nonatomic, copy) NSString *timestamp;

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 aboojan. All rights reserved.
 //
 
-#import "RequestBeanDownloadTaskBase.h"
+#import "AJRequestBeanDownloadTaskBase.h"
 
-@implementation RequestBeanDownloadTaskBase
+@implementation AJRequestBeanDownloadTaskBase
 
 + (NSArray<NSString *> *)ignoredPropertyNames
 {

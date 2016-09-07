@@ -42,7 +42,7 @@ static NSString * const KEY_METHOD = @"method";
 
 - (HTTP_SCHEME)httpSchemeWithRequestClass:(Class)requestClass
 {
-    NSString *httpScheme = self.config[NSStringFromClass(requestClass)][KEY_API];
+    NSString *httpScheme = self.config[NSStringFromClass(requestClass)][KEY_SCHEME];
     if ([httpScheme isEqualToString:@"HTTPS"]) {
         return HTTP_SCHEME_HTTPS;
     }else{

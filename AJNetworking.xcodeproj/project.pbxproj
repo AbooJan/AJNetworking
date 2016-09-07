@@ -24,11 +24,12 @@
 		CC1601BE1C9D007400954797 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1601BC1C9D007400954797 /* Main.storyboard */; };
 		CC1601C01C9D007400954797 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC1601BF1C9D007400954797 /* Assets.xcassets */; };
 		CC1601C31C9D007400954797 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1601C11C9D007400954797 /* LaunchScreen.storyboard */; };
-		CC1601D01C9D01AA00954797 /* RequestBeanBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601CD1C9D01AA00954797 /* RequestBeanBase.m */; };
-		CC1601D11C9D01AA00954797 /* ResponseBeanBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601CF1C9D01AA00954797 /* ResponseBeanBase.m */; };
+		CC1601D01C9D01AA00954797 /* AJRequestBeanBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601CD1C9D01AA00954797 /* AJRequestBeanBase.m */; };
+		CC1601D11C9D01AA00954797 /* AJResponseBeanBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601CF1C9D01AA00954797 /* AJResponseBeanBase.m */; };
 		CC1601D71C9D01C200954797 /* AJNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601D31C9D01C200954797 /* AJNetworkConfig.m */; };
 		CC1601D81C9D01C200954797 /* AJNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1601D61C9D01C200954797 /* AJNetworkManager.m */; };
 		CC5C6D5A1D5B707E00FC3BA2 /* AJNetworkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5C6D591D5B707E00FC3BA2 /* AJNetworkStatus.m */; };
+		CC6F6B3B1D7475D400220983 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = CC6F6B391D7475D400220983 /* client.p12 */; };
 		CC9C0D0F1D71AB990027F69B /* RequestBeanDemoFilm.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9C0D0E1D71AB990027F69B /* RequestBeanDemoFilm.m */; };
 		CC9C0D121D71ABDF0027F69B /* ResponseBeanDemoFilm.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9C0D111D71ABDF0027F69B /* ResponseBeanDemoFilm.m */; };
 		CC9D0DBA1C9E985E00607B5C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9D0DB91C9E985E00607B5C /* ViewController.m */; };
@@ -56,7 +57,7 @@
 		DB7B4A491CB3BC3600094D3B /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7B4A481CB3BC3600094D3B /* MD5Util.m */; };
 		DBE25F771CAB80A600D9FBEA /* ResponseBeanDownloadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F761CAB80A600D9FBEA /* ResponseBeanDownloadFile.m */; };
 		DBE25F7A1CAB80C600D9FBEA /* RequestBeanDownloadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F791CAB80C600D9FBEA /* RequestBeanDownloadFile.m */; };
-		DBE25F7E1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F7D1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m */; };
+		DBE25F7E1CABD83900D9FBEA /* AJRequestBeanDownloadTaskBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE25F7D1CABD83900D9FBEA /* AJRequestBeanDownloadTaskBase.m */; };
 		DBE5DDAA1CB4E9C8006127E9 /* AJCacheOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE5DDA91CB4E9C8006127E9 /* AJCacheOptions.m */; };
 /* End PBXBuildFile section */
 
@@ -92,10 +93,10 @@
 		CC1601BF1C9D007400954797 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC1601C21C9D007400954797 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC1601C41C9D007400954797 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC1601CC1C9D01AA00954797 /* RequestBeanBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanBase.h; sourceTree = "<group>"; };
-		CC1601CD1C9D01AA00954797 /* RequestBeanBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanBase.m; sourceTree = "<group>"; };
-		CC1601CE1C9D01AA00954797 /* ResponseBeanBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanBase.h; sourceTree = "<group>"; };
-		CC1601CF1C9D01AA00954797 /* ResponseBeanBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanBase.m; sourceTree = "<group>"; };
+		CC1601CC1C9D01AA00954797 /* AJRequestBeanBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJRequestBeanBase.h; sourceTree = "<group>"; };
+		CC1601CD1C9D01AA00954797 /* AJRequestBeanBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJRequestBeanBase.m; sourceTree = "<group>"; };
+		CC1601CE1C9D01AA00954797 /* AJResponseBeanBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJResponseBeanBase.h; sourceTree = "<group>"; };
+		CC1601CF1C9D01AA00954797 /* AJResponseBeanBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJResponseBeanBase.m; sourceTree = "<group>"; };
 		CC1601D21C9D01C200954797 /* AJNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworkConfig.h; sourceTree = "<group>"; };
 		CC1601D31C9D01C200954797 /* AJNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNetworkConfig.m; sourceTree = "<group>"; };
 		CC1601D41C9D01C200954797 /* AJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworking.h; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 		CC1601D61C9D01C200954797 /* AJNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNetworkManager.m; sourceTree = "<group>"; };
 		CC5C6D581D5B707E00FC3BA2 /* AJNetworkStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNetworkStatus.h; sourceTree = "<group>"; };
 		CC5C6D591D5B707E00FC3BA2 /* AJNetworkStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNetworkStatus.m; sourceTree = "<group>"; };
+		CC6F6B391D7475D400220983 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
 		CC9C0D0D1D71AB990027F69B /* RequestBeanDemoFilm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDemoFilm.h; sourceTree = "<group>"; };
 		CC9C0D0E1D71AB990027F69B /* RequestBeanDemoFilm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDemoFilm.m; sourceTree = "<group>"; };
 		CC9C0D101D71ABDF0027F69B /* ResponseBeanDemoFilm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanDemoFilm.h; sourceTree = "<group>"; };
@@ -140,22 +142,22 @@
 		DB606EED1CAA6E9900BD6272 /* ResponseBeanUploadAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanUploadAvatar.h; sourceTree = "<group>"; };
 		DB606EEE1CAA6E9900BD6272 /* ResponseBeanUploadAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanUploadAvatar.m; sourceTree = "<group>"; };
 		DB64CC341CA138EC00180682 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		DB64CC361CA13CC300180682 /* ResponseBeanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanProtocol.h; sourceTree = "<group>"; };
+		DB64CC361CA13CC300180682 /* AJResponseBeanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJResponseBeanProtocol.h; sourceTree = "<group>"; };
 		DB64CC371CA1418D00180682 /* ResponseBeanDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanDemo.h; sourceTree = "<group>"; };
 		DB64CC381CA1418D00180682 /* ResponseBeanDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanDemo.m; sourceTree = "<group>"; };
 		DB64CC3A1CA143BB00180682 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DB64CC3C1CA143C400180682 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		DB64CC3E1CA143CA00180682 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB64CC401CA143D000180682 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		DB64CC421CA146EE00180682 /* RequestBeanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanProtocol.h; sourceTree = "<group>"; };
+		DB64CC421CA146EE00180682 /* AJRequestBeanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJRequestBeanProtocol.h; sourceTree = "<group>"; };
 		DB7B4A471CB3BC3600094D3B /* MD5Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Util.h; sourceTree = "<group>"; };
 		DB7B4A481CB3BC3600094D3B /* MD5Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Util.m; sourceTree = "<group>"; };
 		DBE25F751CAB80A600D9FBEA /* ResponseBeanDownloadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseBeanDownloadFile.h; sourceTree = "<group>"; };
 		DBE25F761CAB80A600D9FBEA /* ResponseBeanDownloadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseBeanDownloadFile.m; sourceTree = "<group>"; };
 		DBE25F781CAB80C600D9FBEA /* RequestBeanDownloadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDownloadFile.h; sourceTree = "<group>"; };
 		DBE25F791CAB80C600D9FBEA /* RequestBeanDownloadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDownloadFile.m; sourceTree = "<group>"; };
-		DBE25F7C1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDownloadTaskBase.h; sourceTree = "<group>"; };
-		DBE25F7D1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDownloadTaskBase.m; sourceTree = "<group>"; };
+		DBE25F7C1CABD83900D9FBEA /* AJRequestBeanDownloadTaskBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJRequestBeanDownloadTaskBase.h; sourceTree = "<group>"; };
+		DBE25F7D1CABD83900D9FBEA /* AJRequestBeanDownloadTaskBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJRequestBeanDownloadTaskBase.m; sourceTree = "<group>"; };
 		DBE5DDA81CB4E9C8006127E9 /* AJCacheOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJCacheOptions.h; sourceTree = "<group>"; };
 		DBE5DDA91CB4E9C8006127E9 /* AJCacheOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJCacheOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +231,7 @@
 				CC1601BF1C9D007400954797 /* Assets.xcassets */,
 				CC1601C11C9D007400954797 /* LaunchScreen.storyboard */,
 				CC1601C41C9D007400954797 /* Info.plist */,
+				CC6F6B391D7475D400220983 /* client.p12 */,
 				CC1601B31C9D007400954797 /* Supporting Files */,
 			);
 			path = AJNetworking;
@@ -267,14 +270,14 @@
 		CC1601CB1C9D016F00954797 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CC1601CC1C9D01AA00954797 /* RequestBeanBase.h */,
-				CC1601CD1C9D01AA00954797 /* RequestBeanBase.m */,
-				CC1601CE1C9D01AA00954797 /* ResponseBeanBase.h */,
-				CC1601CF1C9D01AA00954797 /* ResponseBeanBase.m */,
-				DBE25F7C1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.h */,
-				DBE25F7D1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m */,
-				DB64CC421CA146EE00180682 /* RequestBeanProtocol.h */,
-				DB64CC361CA13CC300180682 /* ResponseBeanProtocol.h */,
+				CC1601CC1C9D01AA00954797 /* AJRequestBeanBase.h */,
+				CC1601CD1C9D01AA00954797 /* AJRequestBeanBase.m */,
+				CC1601CE1C9D01AA00954797 /* AJResponseBeanBase.h */,
+				CC1601CF1C9D01AA00954797 /* AJResponseBeanBase.m */,
+				DBE25F7C1CABD83900D9FBEA /* AJRequestBeanDownloadTaskBase.h */,
+				DBE25F7D1CABD83900D9FBEA /* AJRequestBeanDownloadTaskBase.m */,
+				DB64CC421CA146EE00180682 /* AJRequestBeanProtocol.h */,
+				DB64CC361CA13CC300180682 /* AJResponseBeanProtocol.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0EA33E1D55E92000254A00 /* RequestConfig.plist in Resources */,
+				CC6F6B3B1D7475D400220983 /* client.p12 in Resources */,
 				CC1601C31C9D007400954797 /* LaunchScreen.storyboard in Resources */,
 				CC1601C01C9D007400954797 /* Assets.xcassets in Resources */,
 				DB47E7281CACCCE2002613C2 /* client_test_local.p12 in Resources */,
@@ -530,7 +534,7 @@
 				DB388EA01CA9466E00702CE0 /* RequestBeanAlipayConfig.m in Sources */,
 				DBE25F771CAB80A600D9FBEA /* ResponseBeanDownloadFile.m in Sources */,
 				CC9C0D0F1D71AB990027F69B /* RequestBeanDemoFilm.m in Sources */,
-				CC1601D11C9D01AA00954797 /* ResponseBeanBase.m in Sources */,
+				CC1601D11C9D01AA00954797 /* AJResponseBeanBase.m in Sources */,
 				CC0EA34A1D55F49B00254A00 /* RequestBeanDemoLogin.m in Sources */,
 				DBE25F7A1CAB80C600D9FBEA /* RequestBeanDownloadFile.m in Sources */,
 				CC0EA3531D56106300254A00 /* RequestBeanDemoRegister.m in Sources */,
@@ -552,11 +556,11 @@
 				DB606EEC1CAA695500BD6272 /* RequestBeanUploadAvatar.m in Sources */,
 				CC5C6D5A1D5B707E00FC3BA2 /* AJNetworkStatus.m in Sources */,
 				CC0EA3561D56108E00254A00 /* ResponseBeanDemoRegister.m in Sources */,
-				CC1601D01C9D01AA00954797 /* RequestBeanBase.m in Sources */,
+				CC1601D01C9D01AA00954797 /* AJRequestBeanBase.m in Sources */,
 				CC0EA3411D55ECE500254A00 /* RequestBeanDemoBase.m in Sources */,
 				CC1601B51C9D007400954797 /* main.m in Sources */,
 				CC1601D71C9D01C200954797 /* AJNetworkConfig.m in Sources */,
-				DBE25F7E1CABD83900D9FBEA /* RequestBeanDownloadTaskBase.m in Sources */,
+				DBE25F7E1CABD83900D9FBEA /* AJRequestBeanDownloadTaskBase.m in Sources */,
 				DB33B44D1CA65FEC00DB1D05 /* NSData+Base64.m in Sources */,
 				DB388EA31CA9468D00702CE0 /* ResponseBeanAlipayConfig.m in Sources */,
 				DB388E9A1CA90F6100702CE0 /* AJNetworkLog.m in Sources */,

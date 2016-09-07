@@ -11,11 +11,11 @@
 
 #import "AJNetworkConfig.h"
 #import "AJNetworkManager.h"
-#import "RequestBeanBase.h"
-#import "ResponseBeanBase.h"
-#import "RequestBeanDownloadTaskBase.h"
-#import "RequestBeanProtocol.h"
-#import "ResponseBeanProtocol.h"
+#import "AJRequestBeanBase.h"
+#import "AJResponseBeanBase.h"
+#import "AJRequestBeanDownloadTaskBase.h"
+#import "AJRequestBeanProtocol.h"
+#import "AJResponseBeanProtocol.h"
 #import "AJCacheOptions.h"
 
 #endif /* AJNetworking_h */
