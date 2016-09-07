@@ -154,6 +154,10 @@
     RequestBeanDemoFilm *reqeustBean = [[RequestBeanDemoFilm alloc] init];
     reqeustBean.testCode = testCode;
     
+    /*
+     * 对于服务器增量更新的设计，可以先读取缓存显示出来，然后根据http请求结果来判断是否更新页面。
+     */
+    
     [AJNetworkManager requestWithBean:reqeustBean cacheCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
