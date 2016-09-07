@@ -154,7 +154,15 @@
     RequestBeanDemoFilm *reqeustBean = [[RequestBeanDemoFilm alloc] init];
     reqeustBean.testCode = testCode;
     
+<<<<<<< .merge_file_x1btWp
     [AJNetworkManager requestWithBean:reqeustBean cacheCallBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+=======
+    /*
+     * 对于服务器增量更新的设计，可以先读取缓存显示出来，然后根据http请求结果来判断是否更新页面。
+     */
+    
+    [AJNetworkManager requestWithBean:reqeustBean cacheCallBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+>>>>>>> .merge_file_1QTkPv
         
         if (!err) {
             
