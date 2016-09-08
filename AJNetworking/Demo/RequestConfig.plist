@@ -40,7 +40,7 @@
 		<key>api</key>
 		<string>/film</string>
 		<key>scheme</key>
-		<string>HTTPS</string>
+		<string>HTTP</string>
 		<key>method</key>
 		<string>GET</string>
 		<key>desc</key>

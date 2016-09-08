@@ -38,7 +38,7 @@ pod 'AJNetworking'
  
 #### 二、 发起请求
 
-1. 新建一个请求类继承自 `RequestBeanBase` , 一个响应类继承自 `ResponseBeanBase` 。 
+1. 新建一个请求类继承自 `AJRequestBeanBase` , 一个响应类继承自 `AJResponseBeanBase` 。 
 
 	> #### 命名规则
 	
@@ -54,9 +54,9 @@ pod 'AJNetworking'
 	
 2. 请求类里面的成员变量即为发起请求的入参，响应类里面的成员变量即为返回参数。
  
-3. 请求类需要遵循协议：`RequestBeanProtocol` . 响应类需要遵循协议：`ResponseBeanProtocol` 
+3. 请求类需要遵循协议：`AJRequestBeanProtocol` . 响应类需要遵循协议：`AJResponseBeanProtocol` 
  
-4. 网络请求的相关配置通过实现协议 `RequestBeanProtocol` 的方法。
+4. 网络请求的相关配置通过实现协议 `AJRequestBeanProtocol` 的方法。
  
 5. 发起请求由类 `AJNetworkManager` 管理，里面负责网络的请求和返回数据的处理，示例：
  
@@ -65,7 +65,7 @@ pod 'AJNetworking'
     requestBean.userName = self.userNameTF.text;
     requestBean.pw = self.pwTF1.text;
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             
@@ -80,7 +80,7 @@ pod 'AJNetworking'
  	
 #### 三、 文件上传
 
-1. 请求类需要实现协议 `RequestBeanProtocol` 中的方法, 这个参考了 `YTKNetwork` 框架:
+1. 请求类需要实现协议 `AJRequestBeanProtocol` 中的方法, 这个参考了 `YTKNetwork` 框架:
 
 	```objective-c
 	/**
@@ -116,7 +116,7 @@ pod 'AJNetworking'
     requestBean.compid = @"1702487";
     requestBean.avatar = [UIImage imageNamed:@"testImg"];
     
-    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             ResponseBeanUploadAvatar *response = responseBean;
@@ -197,10 +197,10 @@ pod 'AJNetworking'
   *  @param requestBean 请求Bean
   *  @param callBack    读取缓存回调
   */
- + (void)cacheWithRequestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack
+ + (void)cacheWithRequestWithBean:(__kindof AJRequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack
  ```
 
-2. 如果要缓存请求数据，需要请求类实现协议 `RequestBeanProtocol` 的以下方法:
+2. 如果要缓存请求数据，需要请求类实现协议 `AJRequestBeanProtocol` 的以下方法:
 
  ```objective-c
  /**
@@ -213,7 +213,7 @@ pod 'AJNetworking'
  - (BOOL)cacheResponse;
  ``` 
 
-3. 默认缓存是长期有效的，如果需要控制缓存的有效时间，需要请求类实现协议 `RequestBeanProtocol` 的以下方法:
+3. 默认缓存是长期有效的，如果需要控制缓存的有效时间，需要请求类实现协议 `AJRequestBeanProtocol` 的以下方法:
 
  ```objective-c
  /**
@@ -229,7 +229,7 @@ pod 'AJNetworking'
 4. 发起请求的时候可以先读取缓存，当缓存不存在或已失效的时候才真正发起请求：
 
  ```objective-c
-    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof ResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+    [AJNetworkManager cacheWithRequestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
         
         if (!err) {
             
@@ -256,7 +256,7 @@ pod 'AJNetworking'
  *  @param cacheCallBack 缓存读取回调
  *  @param httpCallBack  网络请求结果回调
  */
-+ (void)requestWithBean:(__kindof RequestBeanBase * _Nonnull)requestBean
++ (void)requestWithBean:(__kindof AJRequestBeanBase * _Nonnull)requestBean
           cacheCallBack:(AJRequestCallBack _Nonnull)cacheCallBack
            httpCallBack:(AJRequestCallBack _Nonnull)httpCallBack;
  ```
@@ -274,6 +274,13 @@ pod 'AJNetworking'
  *  @brief 缓存存放路径
  */
 @property (nonatomic, copy) NSString *cachePath;
+
+/**
+ *  @author aboojan
+ *
+ *  @brief 是否开启缓存自动回收，默认关闭
+ */
+@property (nonatomic,assign) BOOL openCacheGC;
 
 /**
  *  @author aboojan
@@ -296,6 +303,7 @@ pod 'AJNetworking'
  ```objective-c
  AJCacheOptions *cacheOptions = [AJCacheOptions new];
  cacheOptions.cachePath = [documentsPath stringByAppendingPathComponent:@"aj_network_cache"];
+ cacheOptions.openCacheGC = YES;
  cacheOptions.globalCacheExpirationSecond = 60;
  cacheOptions.globalCacheGCSecond = 2 * 60;
  networkConfig.cacheOptions = cacheOptions;

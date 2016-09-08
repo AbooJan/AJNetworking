@@ -25,6 +25,13 @@ extern const NSUInteger AJCacheDefaultGCSecond;
 /**
  *  @author aboojan
  *
+ *  @brief 是否开启缓存自动回收，默认关闭
+ */
+@property (nonatomic,assign) BOOL openCacheGC;
+
+/**
+ *  @author aboojan
+ *
  *  @brief 缓存过期时间,最小不能小于60s
  */
 @property (nonatomic, assign) NSUInteger globalCacheExpirationSecond;
@@ -32,7 +39,7 @@ extern const NSUInteger AJCacheDefaultGCSecond;
 /**
  *  @author aboojan
  *
- *  @brief 缓存自动回收时间,最小不能小于60s
+ *  @brief 缓存自动回收时间,最小不能小于60s（开启自动回收之后才有效）
  */
 @property (nonatomic, assign) NSUInteger globalCacheGCSecond;
 

@@ -51,7 +51,12 @@
                                               }];
         
         _httpCache = [[SPTPersistentCache alloc] initWithOptions:options];
-        [_httpCache scheduleGarbageCollector];
+        
+        // 开启缓存自动回收
+        if (self.cacheOptions.openCacheGC) {
+            [_httpCache scheduleGarbageCollector];
+        }
+        
     }
     
     return _httpCache;

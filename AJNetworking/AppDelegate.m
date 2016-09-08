@@ -23,7 +23,7 @@
     
     // 网络配置
     AJNetworkConfig *networkConfig = [AJNetworkConfig shareInstance];
-    networkConfig.hostUrl = @"localhost:3030";
+    networkConfig.hostUrl = @"localhost:3000";
 //    networkConfig.hostUrl = @"192.168.1.10:80";
     networkConfig.httpsCertificatePassword = CFSTR("666666");
     networkConfig.httpsCertificatePath = [[NSBundle mainBundle] pathForResource:@"client" ofType:@"p12"];
@@ -31,8 +31,9 @@
     // 网络缓存配置
     AJCacheOptions *cacheOptions = [AJCacheOptions new];
     cacheOptions.cachePath = [documentsPath stringByAppendingPathComponent:@"aj_network_cache"];
+    cacheOptions.openCacheGC = YES;
     cacheOptions.globalCacheExpirationSecond = 60;
-    cacheOptions.globalCacheGCSecond = 10 * 60;
+    cacheOptions.globalCacheGCSecond = 2 * 60;
     networkConfig.cacheOptions = cacheOptions;
 
     return YES;
