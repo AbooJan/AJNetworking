@@ -322,6 +322,28 @@ pod 'AJNetworking'
 ```
  
  
+#### 八、网络请求Hub支持
+1. 在 `RequestBean` 中实现以下方法
+ 
+ ```
+ /**
+ *  @author aboojan
+ *
+ *  @brief 是否需要显示Loading，默认不显示
+ *
+ *  @return YES，显示；NO，不显示
+ */
+- (BOOL)showHub;
+ ```
+ 
+2. 通过类 `AJNetworkConfig` 类设置 `hubDelegate` ，然后在 `delegate` 中实现hub的显示。
+ 
+ ```
+ - (void)showHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean;
+ - (void)dismissHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean;
+ ```
+ 
+ 
 ## 感谢
  
    依赖框架   | 
