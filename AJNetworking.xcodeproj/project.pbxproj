@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36A97B63B825997E803748F5 /* libPods-AJNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521FD3A1F74DFF5DEE741975 /* libPods-AJNetworking.a */; };
+		CC04AD391D96DFB5003FCAF7 /* NetworkHub.m in Sources */ = {isa = PBXBuildFile; fileRef = CC04AD381D96DFB5003FCAF7 /* NetworkHub.m */; };
 		CC0EA33E1D55E92000254A00 /* RequestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0EA33D1D55E92000254A00 /* RequestConfig.plist */; };
 		CC0EA3411D55ECE500254A00 /* RequestBeanDemoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3401D55ECE500254A00 /* RequestBeanDemoBase.m */; };
 		CC0EA3441D55EDAA00254A00 /* RequestConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3431D55EDAA00254A00 /* RequestConfig.m */; };
@@ -64,6 +65,9 @@
 /* Begin PBXFileReference section */
 		31C16BF7956B58D944EFF12F /* Pods-AJNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AJNetworking.release.xcconfig"; path = "Pods/Target Support Files/Pods-AJNetworking/Pods-AJNetworking.release.xcconfig"; sourceTree = "<group>"; };
 		521FD3A1F74DFF5DEE741975 /* libPods-AJNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AJNetworking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC04AD361D96D9E9003FCAF7 /* AJHubProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJHubProtocol.h; sourceTree = "<group>"; };
+		CC04AD371D96DFB5003FCAF7 /* NetworkHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkHub.h; sourceTree = "<group>"; };
+		CC04AD381D96DFB5003FCAF7 /* NetworkHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkHub.m; sourceTree = "<group>"; };
 		CC0EA33D1D55E92000254A00 /* RequestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RequestConfig.plist; sourceTree = "<group>"; };
 		CC0EA33F1D55ECE500254A00 /* RequestBeanDemoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDemoBase.h; sourceTree = "<group>"; };
 		CC0EA3401D55ECE500254A00 /* RequestBeanDemoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDemoBase.m; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 				CC1601CA1C9D016F00954797 /* Classes */,
 				CC1601B61C9D007400954797 /* AppDelegate.h */,
 				CC1601B71C9D007400954797 /* AppDelegate.m */,
+				CC04AD371D96DFB5003FCAF7 /* NetworkHub.h */,
+				CC04AD381D96DFB5003FCAF7 /* NetworkHub.m */,
 				CC1601BC1C9D007400954797 /* Main.storyboard */,
 				CC1601BF1C9D007400954797 /* Assets.xcassets */,
 				CC1601C11C9D007400954797 /* LaunchScreen.storyboard */,
@@ -263,6 +269,7 @@
 				CC5C6D591D5B707E00FC3BA2 /* AJNetworkStatus.m */,
 				CC1114AF1D6DDCF0009A80DB /* AJError.h */,
 				CC1114B01D6DDCF0009A80DB /* AJError.m */,
+				CC04AD361D96D9E9003FCAF7 /* AJHubProtocol.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -432,7 +439,7 @@
 		CC1601A81C9D007400954797 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = aboojan;
 				TargetAttributes = {
 					CC1601AF1C9D007400954797 = {
@@ -550,6 +557,7 @@
 				CC1601D81C9D01C200954797 /* AJNetworkManager.m in Sources */,
 				DBE5DDAA1CB4E9C8006127E9 /* AJCacheOptions.m in Sources */,
 				DB33B44A1CA65F9C00DB1D05 /* Base64.m in Sources */,
+				CC04AD391D96DFB5003FCAF7 /* NetworkHub.m in Sources */,
 				DB33B4431CA63ED400DB1D05 /* ResponseBeanExample.m in Sources */,
 				DB388E971CA9077E00702CE0 /* LoginViewController.m in Sources */,
 				CC1601B81C9D007400954797 /* AppDelegate.m in Sources */,
@@ -605,8 +613,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -649,8 +659,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -680,7 +692,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AJNetworking/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -708,7 +720,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AJNetworking/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

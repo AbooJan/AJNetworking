@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "AJNetworking.h"
+#import "NetworkHub.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) NetworkHub *hub;
 @end
 
 @implementation AppDelegate
@@ -21,12 +22,15 @@
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     AJLog(@"%@", documentsPath);
     
+    self.hub = [[NetworkHub alloc] init];
+    
     // 网络配置
     AJNetworkConfig *networkConfig = [AJNetworkConfig shareInstance];
     networkConfig.hostUrl = @"localhost:3000";
 //    networkConfig.hostUrl = @"192.168.1.10:80";
     networkConfig.httpsCertificatePassword = CFSTR("666666");
     networkConfig.httpsCertificatePath = [[NSBundle mainBundle] pathForResource:@"client" ofType:@"p12"];
+    networkConfig.hubDelegate = self.hub;
     
     // 网络缓存配置
     AJCacheOptions *cacheOptions = [AJCacheOptions new];

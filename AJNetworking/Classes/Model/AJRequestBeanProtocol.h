@@ -110,4 +110,14 @@
  */
 + (NSArray<__kindof NSString *> *)ignoredPropertyNames;
 
+
+/**
+ *  @author aboojan
+ *
+ *  @brief 是否需要显示Loading，默认不显示
+ *
+ *  @return YES，显示；NO，不显示
+ */
+- (BOOL)showHub;
+
 @end

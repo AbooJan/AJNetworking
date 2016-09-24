@@ -152,6 +152,9 @@
     // LOG
     [AJNetworkLog logWithRequestBean:requestBean];
     
+    //Hub
+    [self showHub:requestBean];
+    
     __weak __typeof__(self) weakSelf = self;
     switch ([requestBean httpMethod]) {
             
@@ -159,10 +162,14 @@
         {
             [manager GET:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
                 
             }];
@@ -177,12 +184,15 @@
                 
                 // 文件等富文本内容
                 [manager POST:requestUrl parameters:params constructingBodyWithBlock:[requestBean constructingBodyBlock] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                    
+                    [strongSelf dismissHub:requestBean];
                     [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                    
+                    [strongSelf dismissHub:requestBean];
                     [strongSelf handleFailureWithError:error callBack:callBack];
                 }];
                 
@@ -190,10 +200,14 @@
                 
                 [manager POST:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                    
+                    [strongSelf dismissHub:requestBean];
                     [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                    
+                    [strongSelf dismissHub:requestBean];
                     [strongSelf handleFailureWithError:error callBack:callBack];
                 }];
             }
@@ -204,12 +218,15 @@
         case HTTP_METHOD_HEAD:
         {
             [manager HEAD:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task) {
-                
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:task callBack:callBack];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
             }];
             
@@ -219,12 +236,15 @@
         case HTTP_METHOD_PUT:
         {
             [manager PUT:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
             }];
             
@@ -234,12 +254,15 @@
         case HTTP_METHOD_PATCH:
         {
             [manager PATCH:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
             }];
             
@@ -249,12 +272,15 @@
         case HTTP_METHOD_DELETE:
         {
             [manager DELETE:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
             }];
             
@@ -386,7 +412,7 @@
     
 
     //TODO: HEAD 请求结果处理有待补充
-    if ([requestBean httpMethod]== HTTP_METHOD_HEAD) {
+    if ([requestBean httpMethod] == HTTP_METHOD_HEAD) {
         callBack(nil, [AJError defaultError]);
         return;
     }
@@ -454,6 +480,29 @@
         }
         
     } onQueue:dispatch_get_main_queue()];
+}
+
+#pragma mark Hub
++ (void)showHub:(AJRequestBeanBase *)requestBean
+{
+    if ([requestBean showHub]) {
+        
+        id delegate = [AJNetworkConfig shareInstance].hubDelegate;
+        if ([delegate respondsToSelector:@selector(showHubWithRequestBean:)]) {
+            [delegate showHubWithRequestBean:requestBean];
+        }
+    }
+}
+
++ (void)dismissHub:(AJRequestBeanBase *)requestBean
+{
+    if ([requestBean showHub]) {
+        
+        id delegate = [AJNetworkConfig shareInstance].hubDelegate;
+        if ([delegate respondsToSelector:@selector(dismissHubWithRequestBean:)]) {
+            [delegate dismissHubWithRequestBean:requestBean];
+        }
+    }
 }
 
 @end

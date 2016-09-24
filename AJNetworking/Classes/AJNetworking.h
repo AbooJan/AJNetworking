@@ -17,5 +17,8 @@
 #import "AJRequestBeanProtocol.h"
 #import "AJResponseBeanProtocol.h"
 #import "AJCacheOptions.h"
+#import "AJNetworkStatus.h"
+#import "AJError.h"
+#import "AJHubProtocol.h"
 
 #endif /* AJNetworking_h */

@@ -89,4 +89,9 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
     return ignoreArray;
 }
 
+- (BOOL)showHub
+{
+    return NO;
+}
+
 @end

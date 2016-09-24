@@ -15,4 +15,9 @@
     return YES;
 }
 
+- (BOOL)showHub
+{
+    return YES;
+}
+
 @end

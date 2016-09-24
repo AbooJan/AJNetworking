@@ -9,6 +9,7 @@
 #import "AJCacheOptions.h"
 #import <SPTPersistentCache/SPTPersistentCache.h>
 #import <AFNetworking/AFNetworking.h>
+#import "AJHubProtocol.h"
 
 #ifdef DEBUG
 #   define AJLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
@@ -51,5 +52,7 @@ typedef NS_ENUM(NSInteger, HTTP_SCHEME)
 @property (nonatomic, copy) NSString *httpsCertificatePath;
 /// 缓存配置
 @property (nonatomic, strong) AJCacheOptions *cacheOptions;
+/// Hub显示代理
+@property (nonatomic, weak) id<AJHubProtocol> hubDelegate;
 
 @end
