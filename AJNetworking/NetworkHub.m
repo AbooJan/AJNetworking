@@ -10,12 +10,12 @@
 
 @implementation NetworkHub
 
-- (void)showHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean
+- (void)showHub:(NSString *)tip
 {
-    AJLog(@"显示Hub");
+    AJLog(@"显示Hub: %@", tip);
 }
 
-- (void)dismissHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean
+- (void)dismissHub
 {
     AJLog(@"隐藏Hub");
 }

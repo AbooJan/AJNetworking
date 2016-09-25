@@ -322,7 +322,7 @@ pod 'AJNetworking'
 ```
  
  
---
+ --
  
  
 #### 八、网络请求Hub支持
@@ -336,14 +336,32 @@ pod 'AJNetworking'
  *
  *  @return YES，显示；NO，不显示
  */
-- (BOOL)showHub;
+- (BOOL)isShowHub;
+
+/**
+ *  @author aboojan
+ *
+ *  @brief Hub提示文案,isShowHub设置为YES时才会生效
+ *
+ @return 提示文案
+ */
+- (NSString *)hubTips;
  ```
  
 2. 通过类 `AJNetworkConfig` 类设置 `hubDelegate` ，然后在 `delegate` 中实现hub的显示。
  
  ```
- - (void)showHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean;
- - (void)dismissHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean;
+ /**
+ * 显示Hub
+ *
+ @param tip hub文案
+ */
+- (void)showHub:(nullable NSString *)tip;
+
+/**
+ * 隐藏Hub
+ */
+- (void)dismissHub;
  ```
  
  

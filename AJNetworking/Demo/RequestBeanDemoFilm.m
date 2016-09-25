@@ -15,9 +15,14 @@
     return YES;
 }
 
-- (BOOL)showHub
+- (BOOL)isShowHub
 {
     return YES;
+}
+
+- (NSString *)hubTips
+{
+    return @"加载中...";
 }
 
 @end

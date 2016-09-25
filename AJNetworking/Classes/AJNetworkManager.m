@@ -485,22 +485,22 @@
 #pragma mark Hub
 + (void)showHub:(AJRequestBeanBase *)requestBean
 {
-    if ([requestBean showHub]) {
+    if ([requestBean isShowHub]) {
         
         id delegate = [AJNetworkConfig shareInstance].hubDelegate;
-        if ([delegate respondsToSelector:@selector(showHubWithRequestBean:)]) {
-            [delegate showHubWithRequestBean:requestBean];
+        if ([delegate respondsToSelector:@selector(showHub:)]) {
+            [delegate showHub:[requestBean hubTips]];
         }
     }
 }
 
 + (void)dismissHub:(AJRequestBeanBase *)requestBean
 {
-    if ([requestBean showHub]) {
+    if ([requestBean isShowHub]) {
         
         id delegate = [AJNetworkConfig shareInstance].hubDelegate;
-        if ([delegate respondsToSelector:@selector(dismissHubWithRequestBean:)]) {
-            [delegate dismissHubWithRequestBean:requestBean];
+        if ([delegate respondsToSelector:@selector(dismissHub)]) {
+            [delegate dismissHub];
         }
     }
 }

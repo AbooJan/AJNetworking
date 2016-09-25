@@ -118,6 +118,16 @@
  *
  *  @return YES，显示；NO，不显示
  */
-- (BOOL)showHub;
+- (BOOL)isShowHub;
+
+
+/**
+ *  @author aboojan
+ *
+ *  @brief Hub提示文案,isShowHub设置为YES时才会生效
+ *
+ @return 提示文案
+ */
+- (NSString *)hubTips;
 
 @end

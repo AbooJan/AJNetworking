@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@class AJRequestBeanBase;
-
 @protocol AJHubProtocol <NSObject>
-- (void)showHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean;
-- (void)dismissHubWithRequestBean:(__kindof AJRequestBeanBase *)requestBean;
+
+/**
+ * 显示Hub
+ *
+ @param tip hub文案
+ */
+- (void)showHub:(nullable NSString *)tip;
+
+
+/**
+ * 隐藏Hub
+ */
+- (void)dismissHub;
 @end
