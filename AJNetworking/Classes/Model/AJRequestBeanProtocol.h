@@ -126,8 +126,20 @@
  *
  *  @brief Hub提示文案,isShowHub设置为YES时才会生效
  *
- @return 提示文案
+ *  @return 提示文案
  */
 - (NSString *)hubTips;
+
+
+/**
+ *  @author aboojan
+ *
+ *  @brief 用于Response JSON解析的目标类名，默认为根据RequestBean解析名称。
+ *         如果返回nil，则解析为`AJResponseBeanBase`。
+ *         类名对应的类必须继承自`AJResponseBeanBase`。
+ *
+ @return Response JSON解析的目标类名
+ */
+- (NSString *)responseBeanClassName;
 
 @end

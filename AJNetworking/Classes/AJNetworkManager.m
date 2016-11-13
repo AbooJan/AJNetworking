@@ -97,11 +97,18 @@
 
 + (Class)responseClassWithRequestBean:(__kindof AJRequestBeanBase *) requestBean
 {
-    const char *requestClassName = class_getName([requestBean class]);
-    NSString *responseBeanNameStr = [[NSString stringWithUTF8String:requestClassName] stringByReplacingOccurrencesOfString:@"Request" withString:@"Response"];
+    NSString *responseBeanNameStr = [requestBean responseBeanClassName];
+    if (!responseBeanNameStr) {
+        responseBeanNameStr = @"AJResponseBeanBase";
+    }
+    
     const char *responseBeanName = [responseBeanNameStr UTF8String];
     
-    return objc_getClass(responseBeanName);
+    Class responseBeanClass = objc_getClass(responseBeanName);
+
+    NSAssert([responseBeanClass isSubclassOfClass:[AJResponseBeanBase class]], @"Response Bean Class must be subclass of AJResponseBeanBase");
+    
+    return responseBeanClass;
 }
 
 

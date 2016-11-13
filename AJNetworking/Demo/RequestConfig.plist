@@ -46,5 +46,16 @@
 		<key>desc</key>
 		<string>接口描述：电影列表</string>
 	</dict>
+    <key>RequestBeanVersion</key>
+    <dict>
+        <key>api</key>
+        <string>/version</string>
+        <key>scheme</key>
+        <string>HTTP</string>
+        <key>method</key>
+        <string>GET</string>
+        <key>desc</key>
+        <string>接口描述：版本号</string>
+    </dict>
 </dict>
 </plist>

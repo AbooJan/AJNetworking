@@ -16,6 +16,7 @@
 #import "ResponseBeanDemoNews.h"
 #import "RequestBeanDemoFilm.h"
 #import "ResponseBeanDemoFilm.h"
+#import "RequestBeanVersion.h"
 #import "MJExtension.h"
 
 @interface ViewController ()
@@ -45,8 +46,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 }
+
+#pragma mark 自定义Response Bean 示例
+- (IBAction)customResponseBeanClassBtnClick:(id)sender
+{
+    RequestBeanVersion *requestBean = [[RequestBeanVersion alloc] init];
+    [AJNetworkManager requestWithBean:requestBean callBack:^(__kindof AJResponseBeanBase * _Nullable responseBean, AJError * _Nullable err) {
+        if (!err) {
+            AJLog(@"%@", responseBean);
+        }else{
+            AJLog(@"%@", [err description]);
+        }
+    }];
+}
+
 
 #pragma mark GET请求示例
 - (IBAction)loginBtnClick:(UIButton *)sender

@@ -7,6 +7,7 @@
 //
 
 #import "AJRequestBeanBase.h"
+#import <objc/runtime.h>
 
 static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
 
@@ -97,6 +98,13 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
 - (NSString *)hubTips
 {
     return nil;
+}
+
+- (NSString *)responseBeanClassName
+{
+    const char *requestClassName = class_getName([self class]);
+    NSString *responseBeanNameStr = [[NSString stringWithUTF8String:requestClassName] stringByReplacingOccurrencesOfString:@"Request" withString:@"Response"];
+    return responseBeanNameStr;
 }
 
 @end
