@@ -3,7 +3,7 @@
 //  AJNetworking
 //
 //  Created by 钟宝健 on 16/3/18.
-//  Copyright © 2016年 Joiway. All rights reserved.
+//  Copyright © 2016年 AbooJan. All rights reserved.
 //
 
 #import "AJNetworkManager.h"
@@ -13,10 +13,25 @@
 #import "MD5Util.h"
 #import "AJNetworkStatus.h"
 
+@interface AJNetworkManager()
+@property (nonatomic, strong) NSMutableDictionary<__kindof NSString *, __kindof NSURLSessionTask *> *taskStack;
+@end
 
 @implementation AJNetworkManager
 
 #pragma mark - <基本信息>
+
++ (AJNetworkManager *)shareInstance
+{
+    static AJNetworkManager *instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[AJNetworkManager alloc] init];
+        instance.taskStack = [NSMutableDictionary dictionary];
+    });
+    
+    return instance;
+}
 
 + (AFHTTPSessionManager *)httpsSessionManager {
     
@@ -85,15 +100,6 @@
     return securityError;
 }
 
-#pragma mark 缓存Key
-+ (NSString *)cacheKeyWithRequestBean:(__kindof AJRequestBeanBase *) requestBean
-{
-    NSString *cacheInfoStr = [NSString stringWithFormat:@"URL:%@ PARAMS:%@", [requestBean requestUrl], [requestBean mj_keyValues]];
-    NSString *cacheKey = [MD5Util md5WithoutEncryptionFactor:cacheInfoStr];
-    
-    return cacheKey;
-}
-
 
 + (Class)responseClassWithRequestBean:(__kindof AJRequestBeanBase *) requestBean
 {
@@ -122,6 +128,13 @@
         AJError *err = [[AJError alloc] initWithCode:AJErrorCodeNoNetwork message:@"network can not reach"];
         callBack(nil, err);
 
+        return;
+    }
+    
+    // 检查当前是否已经有请求在跑
+    NSURLSessionTask *oldTask = [[self shareInstance].taskStack objectForKey:[requestBean taskKey]];
+    if (oldTask) {
+        // 如果已有旧的请求在跑，不进行新的请求
         return;
     }
     
@@ -162,24 +175,29 @@
     //Hub
     [self showHub:requestBean];
     
+    NSURLSessionTask *requestTask = nil;
     __weak __typeof__(self) weakSelf = self;
     switch ([requestBean httpMethod]) {
             
         case HTTP_METHOD_GET:
         {
-            [manager GET:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            requestTask = [manager GET:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                 
             }];
+            
+            
             
             break;
         }
@@ -190,32 +208,38 @@
             if ([requestBean constructingBodyBlock] != nil) {
                 
                 // 文件等富文本内容
-                [manager POST:requestUrl parameters:params constructingBodyWithBlock:[requestBean constructingBodyBlock] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                requestTask = [manager POST:requestUrl parameters:params constructingBodyWithBlock:[requestBean constructingBodyBlock] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
+                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleFailureWithError:error callBack:callBack];
+                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                    
                 }];
                 
             }else{
                 
-                [manager POST:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                requestTask = [manager POST:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
+                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleFailureWithError:error callBack:callBack];
+                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                    
                 }];
             }
             
@@ -224,17 +248,20 @@
             
         case HTTP_METHOD_HEAD:
         {
-            [manager HEAD:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task) {
+            requestTask = [manager HEAD:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:task callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                
             }];
             
             break;
@@ -242,17 +269,20 @@
             
         case HTTP_METHOD_PUT:
         {
-            [manager PUT:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            requestTask = [manager PUT:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                
             }];
             
             break;
@@ -260,17 +290,20 @@
             
         case HTTP_METHOD_PATCH:
         {
-            [manager PATCH:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            requestTask = [manager PATCH:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                
             }];
             
             break;
@@ -278,17 +311,20 @@
             
         case HTTP_METHOD_DELETE:
         {
-            [manager DELETE:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            requestTask = [manager DELETE:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
+                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                
             }];
             
             break;
@@ -297,6 +333,14 @@
         default:
             NSLog(@"unknow http method");
             break;
+    }
+    
+    // 任务队列
+    if (requestTask != nil
+        && requestBean != nil
+        && [requestBean taskKey] !=nil) {
+        
+        [[self shareInstance].taskStack setObject:requestTask forKey:[requestBean taskKey]];
     }
 }
 
@@ -379,7 +423,7 @@
     if ([requestBean cacheResponse]) {
         
         SPTPersistentCache *httpCache = [[AJNetworkConfig shareInstance] globalHttpCache];
-        NSString *cacheKey = [self cacheKeyWithRequestBean:requestBean];
+        NSString *cacheKey = [requestBean taskKey];
         
         __weak __typeof(&*self) weakSelf = self;
         [httpCache loadDataForKey:cacheKey withCallback:^(SPTPersistentCacheResponse * _Nonnull response) {
@@ -408,6 +452,25 @@
         
         AJError *err = [[AJError alloc] initWithCode:AJErrorCodeNoCache message:@"no cache"];
         callBack(nil, err);
+    }
+}
+
++ (void)stopRequestTaskWithTaskKey:(NSString *)taskKey
+{
+    if (!taskKey) {
+        return;
+    }
+    
+    NSURLSessionTask *task = [[self shareInstance].taskStack objectForKey:taskKey];
+    if (task) {
+        
+        // 任务取消
+        if (task.state == NSURLSessionTaskStateRunning) {
+            [task cancel];
+        }
+        
+        // 从任务队列中移除
+        [[self shareInstance].taskStack removeObjectForKey:taskKey];
     }
 }
 
@@ -475,7 +538,7 @@
     SPTPersistentCache *httpCache = [[AJNetworkConfig shareInstance] globalHttpCache];
     
     NSData *cacheData = [responseObject mj_JSONData];
-    NSString *cacheKey = [self cacheKeyWithRequestBean:requestBean];
+    NSString *cacheKey = [requestBean taskKey];
     NSTimeInterval ttl = [requestBean cacheLiveSecond];
     
     [httpCache storeData:cacheData forKey:cacheKey ttl:ttl locked:NO withCallback:^(SPTPersistentCacheResponse * _Nonnull response) {

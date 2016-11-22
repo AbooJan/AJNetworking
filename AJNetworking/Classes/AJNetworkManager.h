@@ -3,7 +3,7 @@
 //  AJNetworking
 //
 //  Created by 钟宝健 on 16/3/18.
-//  Copyright © 2016年 Joiway. All rights reserved.
+//  Copyright © 2016年 AbooJan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -76,5 +76,14 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
  *  @param callBack    读取缓存回调
  */
 + (void)cacheWithRequestWithBean:(__kindof AJRequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack;
+
+
+
+/**
+ 根据 taskKey 结束目标网络请求任务
+
+ @param taskKey 任务key
+ */
++ (void)stopRequestTaskWithTaskKey:(NSString * _Nonnull)taskKey;
 
 @end

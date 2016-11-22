@@ -10,5 +10,5 @@
 #import "AJRequestBeanProtocol.h"
 
 @interface AJRequestBeanBase : NSObject <AJRequestBeanProtocol>
-
+@property (copy, nonatomic, readonly) NSString *taskKey;
 @end

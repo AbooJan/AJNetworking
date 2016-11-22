@@ -8,6 +8,8 @@
 
 #import "AJRequestBeanBase.h"
 #import <objc/runtime.h>
+#import "MJExtension.h"
+#import "MD5Util.h"
 
 static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
 
@@ -81,6 +83,8 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
 {
     NSMutableArray *ignoreArray = [NSMutableArray arrayWithArray:[self ignoredPropertyNames]];
     
+    [ignoreArray addObject:@"taskKey"];
+    
     // 解决MJExtension最新版本的BUG
     [ignoreArray addObject:@"debugDescription"];
     [ignoreArray addObject:@"description"];
@@ -105,6 +109,15 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
     const char *requestClassName = class_getName([self class]);
     NSString *responseBeanNameStr = [[NSString stringWithUTF8String:requestClassName] stringByReplacingOccurrencesOfString:@"Request" withString:@"Response"];
     return responseBeanNameStr;
+}
+
+- (NSString *)taskKey
+{
+    NSString *cacheInfoStr = [NSString stringWithFormat:@"URL:%@ PARAMS:%@", [self requestUrl], [self mj_keyValues]];
+    
+    NSString *key = [MD5Util md5WithoutEncryptionFactor:cacheInfoStr];
+    
+    return key;
 }
 
 @end
