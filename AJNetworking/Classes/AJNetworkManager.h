@@ -77,13 +77,11 @@ typedef void(^AJDownloadCompletionCallBack)(NSURL * _Nullable filePath, NSError 
  */
 + (void)cacheWithRequestWithBean:(__kindof AJRequestBeanBase * _Nonnull)requestBean callBack:(AJRequestCallBack _Nonnull)callBack;
 
-
-
 /**
  根据 taskKey 结束目标网络请求任务
 
- @param taskKey 任务key
+ @param taskKeyArray 任务Key数组
  */
-+ (void)stopRequestTaskWithTaskKey:(NSString * _Nonnull)taskKey;
++ (void)stopRequestTaskWithTaskKey:(NSArray<__kindof NSString *> * _Nonnull)taskKeyArray;
 
 @end

@@ -186,18 +186,16 @@
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             }];
-            
-            
             
             break;
         }
@@ -213,14 +211,14 @@
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleFailureWithError:error callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                     
                 }];
                 
@@ -231,14 +229,14 @@
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     __strong __typeof__(weakSelf) strongSelf = weakSelf;
                     
                     [strongSelf dismissHub:requestBean];
                     [strongSelf handleFailureWithError:error callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                     
                 }];
             }
@@ -253,14 +251,14 @@
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:task callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             }];
             
@@ -274,14 +272,14 @@
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             }];
             
@@ -295,14 +293,14 @@
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             }];
             
@@ -316,14 +314,14 @@
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof__(weakSelf) strongSelf = weakSelf;
                 
                 [strongSelf dismissHub:requestBean];
                 [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:[requestBean taskKey]];
+                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
             }];
             
@@ -455,22 +453,25 @@
     }
 }
 
-+ (void)stopRequestTaskWithTaskKey:(NSString *)taskKey
++ (void)stopRequestTaskWithTaskKey:(NSArray<__kindof NSString *> *)taskKeyArray
 {
-    if (!taskKey) {
+    if (!taskKeyArray) {
         return;
     }
     
-    NSURLSessionTask *task = [[self shareInstance].taskStack objectForKey:taskKey];
-    if (task) {
+    for (NSString *taskKey in taskKeyArray) {
         
-        // 任务取消
-        if (task.state == NSURLSessionTaskStateRunning) {
-            [task cancel];
+        NSURLSessionTask *task = [[self shareInstance].taskStack objectForKey:taskKey];
+        if (task) {
+            
+            // 任务取消
+            if (task.state == NSURLSessionTaskStateRunning) {
+                [task cancel];
+            }
+            
+            // 从任务队列中移除
+            [[self shareInstance].taskStack removeObjectForKey:taskKey];
         }
-        
-        // 从任务队列中移除
-        [[self shareInstance].taskStack removeObjectForKey:taskKey];
     }
 }
 

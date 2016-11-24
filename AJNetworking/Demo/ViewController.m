@@ -18,6 +18,7 @@
 #import "ResponseBeanDemoFilm.h"
 #import "RequestBeanVersion.h"
 #import "MJExtension.h"
+#import "BViewController.h"
 
 @interface ViewController ()
 
@@ -39,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *statusSegment;
 - (IBAction)filmBtnClick:(id)sender;
 
+- (IBAction)jumpToPage:(id)sender;
 
 @end
 
@@ -196,6 +198,15 @@
     for (Film *film in films.data) {
         AJLog(@"%@ -- %@", film.name, film.type);
     }
+}
+
+#pragma mark 
+- (IBAction)jumpToPage:(id)sender
+{
+    BViewController *bPage = [[BViewController alloc] init];
+    [self presentViewController:bPage animated:YES completion:^{
+        //
+    }];
 }
 
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		36A97B63B825997E803748F5 /* libPods-AJNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521FD3A1F74DFF5DEE741975 /* libPods-AJNetworking.a */; };
 		CC04AD391D96DFB5003FCAF7 /* NetworkHub.m in Sources */ = {isa = PBXBuildFile; fileRef = CC04AD381D96DFB5003FCAF7 /* NetworkHub.m */; };
+		CC05D0F31DE7343C00C6E8A9 /* BViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC05D0F21DE7343C00C6E8A9 /* BViewController.m */; };
 		CC0EA33E1D55E92000254A00 /* RequestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0EA33D1D55E92000254A00 /* RequestConfig.plist */; };
 		CC0EA3411D55ECE500254A00 /* RequestBeanDemoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3401D55ECE500254A00 /* RequestBeanDemoBase.m */; };
 		CC0EA3441D55EDAA00254A00 /* RequestConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA3431D55EDAA00254A00 /* RequestConfig.m */; };
@@ -69,6 +70,8 @@
 		CC04AD361D96D9E9003FCAF7 /* AJHubProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJHubProtocol.h; sourceTree = "<group>"; };
 		CC04AD371D96DFB5003FCAF7 /* NetworkHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkHub.h; sourceTree = "<group>"; };
 		CC04AD381D96DFB5003FCAF7 /* NetworkHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkHub.m; sourceTree = "<group>"; };
+		CC05D0F11DE7343C00C6E8A9 /* BViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BViewController.h; sourceTree = "<group>"; };
+		CC05D0F21DE7343C00C6E8A9 /* BViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BViewController.m; sourceTree = "<group>"; };
 		CC0EA33D1D55E92000254A00 /* RequestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RequestConfig.plist; sourceTree = "<group>"; };
 		CC0EA33F1D55ECE500254A00 /* RequestBeanDemoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBeanDemoBase.h; sourceTree = "<group>"; };
 		CC0EA3401D55ECE500254A00 /* RequestBeanDemoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBeanDemoBase.m; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				CC9D0DBB1C9E9A0F00607B5C /* Model */,
 				CC9D0DB81C9E985E00607B5C /* ViewController.h */,
 				CC9D0DB91C9E985E00607B5C /* ViewController.m */,
+				CC05D0F11DE7343C00C6E8A9 /* BViewController.h */,
+				CC05D0F21DE7343C00C6E8A9 /* BViewController.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -542,6 +547,7 @@
 				CC0EA3501D55F62400254A00 /* User.m in Sources */,
 				CC1114B11D6DDCF0009A80DB /* AJError.m in Sources */,
 				DB33B4461CA65F8300DB1D05 /* TripleDESEncrypt.m in Sources */,
+				CC05D0F31DE7343C00C6E8A9 /* BViewController.m in Sources */,
 				DB7B4A491CB3BC3600094D3B /* MD5Util.m in Sources */,
 				DB388EA01CA9466E00702CE0 /* RequestBeanAlipayConfig.m in Sources */,
 				DBE25F771CAB80A600D9FBEA /* ResponseBeanDownloadFile.m in Sources */,

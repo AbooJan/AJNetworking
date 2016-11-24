@@ -141,6 +141,13 @@
                                     <action selector="customResponseBeanClassBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zLO-aC-NQf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zc2-I1-LyW">
+                                <rect key="frame" x="16" y="372" width="46" height="30"/>
+                                <state key="normal" title="新页面"/>
+                                <connections>
+                                    <action selector="jumpToPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jST-ff-zXd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -152,6 +159,8 @@
                             <constraint firstItem="JIz-WQ-FaZ" firstAttribute="top" secondItem="Y4Z-6c-VXy" secondAttribute="bottom" constant="16" id="F3C-SQ-pQE"/>
                             <constraint firstItem="BRX-kF-LLg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="FL8-mW-AY6"/>
                             <constraint firstItem="ME7-sG-Kuf" firstAttribute="leading" secondItem="JIz-WQ-FaZ" secondAttribute="trailing" constant="8" id="HFZ-9J-oZK"/>
+                            <constraint firstItem="Zc2-I1-LyW" firstAttribute="top" secondItem="Fu3-fX-mu9" secondAttribute="bottom" constant="8" id="Jql-wz-EHt"/>
+                            <constraint firstItem="Zc2-I1-LyW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="MmF-Uf-52I"/>
                             <constraint firstItem="raa-sg-LPu" firstAttribute="top" secondItem="fTR-jV-YJO" secondAttribute="bottom" constant="16" id="NzQ-pP-XXI"/>
                             <constraint firstItem="YkR-rd-Gtd" firstAttribute="top" secondItem="d62-G1-HTH" secondAttribute="bottom" constant="20" id="Q8c-I8-sgY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="w8i-eS-tUM" secondAttribute="bottom" constant="16" id="TPL-HU-e7w"/>
@@ -190,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="339"/>
+            <point key="canvasLocation" x="242.40000000000001" y="338.68065967016497"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="PVS-vP-dTj">
