@@ -324,7 +324,7 @@ pod 'AJNetworking'
 ```
 
 
- --
+ ---
 
 
 #### 八、网络请求Hub支持
@@ -366,6 +366,27 @@ pod 'AJNetworking'
 - (void)dismissHub;
  ```
 
+
+ ---
+
+
+#### 九、结束网络请求
+1. 通过 `AJNetworkManager` 类的以下方法实现结束网络请求任务
+
+```
+/**
+ 根据 taskKey 结束目标网络请求任务
+
+ @param taskKeyArray 任务Key数组
+ */
++ (void)stopRequestTaskWithTaskKey:(NSArray<__kindof NSString *> * _Nonnull)taskKeyArray
+```
+
+2. 继承自 `AJRequestBeanBase` 请求数据Bean新增了一个获取 `taskKey` 的成员变量，在Bean赋值后可以获取。
+
+3. 这样可以在控制器基类中暴露一个存放 `taskKey` 的数组，然后在通用的页面关闭方法或 `dealloc` 方法中把网络请求结束掉,减少资源占用。
+
+ ---
 
 ## 感谢
 
