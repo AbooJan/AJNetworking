@@ -120,6 +120,51 @@
 
 #pragma mark - <请求处理>
 
+#pragma mark - private
+
++ (__kindof AFHTTPRequestSerializer *)requestSerializerWithRequestBean:(__kindof AJRequestBeanBase *)requestBean
+{
+    __kindof AFHTTPRequestSerializer *requestSerializer;
+    switch ([requestBean requestSerialization]) {
+        case HTTP_REQUEST_SERIALIZATION_FORM:
+            requestSerializer = [AFHTTPRequestSerializer serializer];
+            break;
+            
+        case HTTP_REQUEST_SERIALIZATION_JSON:
+            requestSerializer = [AFJSONRequestSerializer serializer];
+            break;
+            
+        case HTTP_REQUEST_SERIALIZATION_PROPERTY_LIST:
+            requestSerializer = [AFPropertyListRequestSerializer serializer];
+            break;
+            
+        default:
+            requestSerializer = [AFHTTPRequestSerializer serializer];;
+            break;
+    }
+    requestSerializer.timeoutInterval = [requestBean timeout];
+    
+    return requestSerializer;
+}
+
++ (void)configHttpHeaderWithRequestBean:(__kindof AJRequestBeanBase *)requestBean requestSerializer:(__kindof AFHTTPRequestSerializer *)requestSerializer
+{
+    NSDictionary *headerFieldValueDictionary = [requestBean httpHeader];
+    if (headerFieldValueDictionary != nil) {
+        for (id httpHeaderField in headerFieldValueDictionary.allKeys) {
+            id value = headerFieldValueDictionary[httpHeaderField];
+            if ([httpHeaderField isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]]) {
+                [requestSerializer setValue:(NSString *)value forHTTPHeaderField:(NSString *)httpHeaderField];
+            } else {
+                AJLog(@"Error, class of key/value in headerFieldValueDictionary should be NSString.");
+            }
+        }
+    }
+
+}
+
+#pragma mark - public
+
 + (void)requestWithBean:(__kindof AJRequestBeanBase *)requestBean callBack:(AJRequestCallBack)callBack
 {
     // 网络检测
@@ -142,21 +187,10 @@
     NSString *requestUrl = [requestBean requestUrl];
     NSDictionary *params = [requestBean mj_keyValues];
     
-    AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
-    requestSerializer.timeoutInterval = [requestBean timeout];
+    __kindof AFHTTPRequestSerializer *requestSerializer = [self requestSerializerWithRequestBean:requestBean];
     
     // Http Header
-    NSDictionary *headerFieldValueDictionary = [requestBean httpHeader];
-    if (headerFieldValueDictionary != nil) {
-        for (id httpHeaderField in headerFieldValueDictionary.allKeys) {
-            id value = headerFieldValueDictionary[httpHeaderField];
-            if ([httpHeaderField isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]]) {
-                [requestSerializer setValue:(NSString *)value forHTTPHeaderField:(NSString *)httpHeaderField];
-            } else {
-                AJLog(@"Error, class of key/value in headerFieldValueDictionary should be NSString.");
-            }
-        }
-    }
+    [self configHttpHeaderWithRequestBean:requestBean requestSerializer:requestSerializer];
     
     // 序列化
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
@@ -177,26 +211,32 @@
     
     NSURLSessionTask *requestTask = nil;
     __weak __typeof__(self) weakSelf = self;
+    
+    
+    // Request Success Callback
+    void(^SuccessBlock)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject){
+        __strong __typeof__(weakSelf) strongSelf = weakSelf;
+        
+        [strongSelf dismissHub:requestBean];
+        [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
+        [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
+    };
+    
+    // Request Fail Callback
+    void (^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        __strong __typeof__(weakSelf) strongSelf = weakSelf;
+        
+        [strongSelf dismissHub:requestBean];
+        [strongSelf handleFailureWithError:error callBack:callBack];
+        [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
+    };
+    
+    
     switch ([requestBean httpMethod]) {
             
         case HTTP_METHOD_GET:
         {
-            requestTask = [manager GET:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            }];
-            
+            requestTask = [manager GET:requestUrl parameters:params progress:nil success:SuccessBlock failure:FailBlock];
             break;
         }
             
@@ -206,39 +246,11 @@
             if ([requestBean constructingBodyBlock] != nil) {
                 
                 // 文件等富文本内容
-                requestTask = [manager POST:requestUrl parameters:params constructingBodyWithBlock:[requestBean constructingBodyBlock] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                    
-                    [strongSelf dismissHub:requestBean];
-                    [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                    
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                    __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                    
-                    [strongSelf dismissHub:requestBean];
-                    [strongSelf handleFailureWithError:error callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                    
-                }];
+                requestTask = [manager POST:requestUrl parameters:params constructingBodyWithBlock:[requestBean constructingBodyBlock] progress:nil success:SuccessBlock failure:FailBlock];
                 
             }else{
                 
-                requestTask = [manager POST:requestUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                    
-                    [strongSelf dismissHub:requestBean];
-                    [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                    
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                    __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                    
-                    [strongSelf dismissHub:requestBean];
-                    [strongSelf handleFailureWithError:error callBack:callBack];
-                    [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                    
-                }];
+                requestTask = [manager POST:requestUrl parameters:params progress:nil success:SuccessBlock failure:FailBlock];
             }
             
             break;
@@ -253,77 +265,28 @@
                 [strongSelf handleSuccessWithRequestBean:requestBean response:task callBack:callBack];
                 [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
                 
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            }];
+            } failure:FailBlock];
             
             break;
         }
             
         case HTTP_METHOD_PUT:
         {
-            requestTask = [manager PUT:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            }];
+            requestTask = [manager PUT:requestUrl parameters:params success:SuccessBlock failure:FailBlock];
             
             break;
         }
             
         case HTTP_METHOD_PATCH:
         {
-            requestTask = [manager PATCH:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            }];
+            requestTask = [manager PATCH:requestUrl parameters:params success:SuccessBlock failure:FailBlock];
             
             break;
         }
             
         case HTTP_METHOD_DELETE:
         {
-            requestTask = [manager DELETE:requestUrl parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleSuccessWithRequestBean:requestBean response:responseObject callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong __typeof__(weakSelf) strongSelf = weakSelf;
-                
-                [strongSelf dismissHub:requestBean];
-                [strongSelf handleFailureWithError:error callBack:callBack];
-                [strongSelf stopRequestTaskWithTaskKey:@[[requestBean taskKey]]];
-                
-            }];
+            requestTask = [manager DELETE:requestUrl parameters:params success:SuccessBlock failure:FailBlock];
             
             break;
         }

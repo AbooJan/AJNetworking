@@ -21,6 +21,15 @@
 
 typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
+typedef NS_ENUM(NSInteger, HTTP_REQUEST_SERIALIZATION)
+{
+    /// Content-Type:application/x-www-form-urlencoded
+    HTTP_REQUEST_SERIALIZATION_FORM,
+    /// Content-Type:application/json
+    HTTP_REQUEST_SERIALIZATION_JSON,
+    /// Content-Type:application/x-plist
+    HTTP_REQUEST_SERIALIZATION_PROPERTY_LIST
+};
 
 typedef NS_ENUM(NSInteger, HTTP_METHOD)
 {

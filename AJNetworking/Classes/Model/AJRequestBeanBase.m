@@ -120,4 +120,9 @@ static const NSTimeInterval DEFAULT_TIMEOUT = 30.0;
     return key;
 }
 
+- (HTTP_REQUEST_SERIALIZATION)requestSerialization
+{
+    return HTTP_REQUEST_SERIALIZATION_FORM;
+}
+
 @end

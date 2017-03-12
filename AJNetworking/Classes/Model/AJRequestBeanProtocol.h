@@ -142,4 +142,11 @@
  */
 - (NSString *)responseBeanClassName;
 
+/**
+ 网络请求数据序列化格式
+
+ @return HTTP_REQUEST_SERIALIZATION ENUM, 默认是HTTP_REQUEST_SERIALIZATION_FORM
+ */
+- (HTTP_REQUEST_SERIALIZATION)requestSerialization;
+
 @end
